@@ -9,3 +9,14 @@
 | 3      | Davian Benito                 | 5025201220 |
 | 4      | Anak Agung Yatestha Parwata   | 5025201234 |
 | 5      | Muhammad Amin                 | 5025201251 |
+
+## Step Menjalankan Project
+> Pertama jalankan command untuk menginstall module atau packages
+```
+  npm install
+```
+
+> Untuk menjalankan project silahkan lakukan
+```
+  npm run dev
+```
