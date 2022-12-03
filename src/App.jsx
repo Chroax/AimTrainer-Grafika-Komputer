@@ -190,7 +190,7 @@ function animate() {
         if (C_OBJ.item.solid == obj.object) {
           selectObject(C_OBJ);
           objectTerklik = true;
-          const audio_click = new Audio('./roblox_death.mp3');
+          const audio_click = new Audio('./assets/roblox_death.mp3');
           audio_click.play();
         }
       })
@@ -199,7 +199,7 @@ function animate() {
     if (!objectTerklik) {
       score -= 10;
       document.querySelector('#score').innerHTML = score;
-      const audio_wiff = new Audio('./bruh.mp3');
+      const audio_wiff = new Audio('./assets/bruh.mp3');
       audio_wiff.play();
     }
   }, true);
