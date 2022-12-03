@@ -9,7 +9,48 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <canvas id="canvas" style="width: 100vw; height: 100vh; display: block;"></canvas>
+
+  <div id="crosshair" style="display: none;">
+    <p>+</p>
+  </div>
+
+  <div id="score-container" style="display: none;">
+    <h3 class="glowing-text" style="margin: 2rem 0 0;">SCORE</h3>
+    <h3 id="score" style="margin: 0;"></h3>
+  </div>
+
+  <div id="time-container" style="display: none;">
+    <h3 class="glowing-text" style="margin: 0 1rem 0 0;">TIME:</h3>
+    <h3 id="time" style="margin: 0;"></h3>
+  </div>
+
+  <div id="highscore-container">
+    <h3 class="glowing-text" style="margin: 0 1rem 0 0;">HIGHSCORE:</h3>
+    <h3 id="highscore" style="margin: 0;"></h3>
+  </div>
+
+  <div id="mainmenu">
+    <div class="menu-container" style="display: flex; flex-direction: column; justify-content: center;">
+      <h3 class="glowing-text" style="margin: 0; line-height: 3rem; text-align: center;">AIM TRAINER</h3>
+      <button id="start-button" class="button">START</button>
+    </div>
+  </div>
+
+  <div id="cred-container">
+    <p id="cred" style="margin: 0; font-size: 16px;">Made with 🔥 by kelompok 4</p>
+  </div>
+
+  <div data-video="-BmT8XcseqY" style="display: none;" data-autoplay="1" data-loop="1" id="youtube-audio"></div>
+
+  <script>
+    if (localStorage.getItem("highscore") != undefined && localStorage.getItem("highscore") != null) {
+      document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
+    }
+    else {
+      localStorage.setItem("highscore", 0);
+    };
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
