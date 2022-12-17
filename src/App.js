@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
 import Utility from './lib/Utility';
+import Light from './lib/Light';
 
 let GAME_STATE = "IDLE";
 let MAX_TIME = prompt("MAX_TIME (s)");
@@ -14,28 +15,7 @@ function animate() {
     let MAX_TARGET = 3;
     let score = 0;
 
-    let light_objects = {
-        DirectionalLight: {
-            active: true,
-            members: []
-        },
-        HemisphereLight: {
-            active: false,
-            members: []
-        },
-        AmbientLight: {
-            active: false,
-            members: []
-        },
-        PointLight: {
-            active: false,
-            members: []
-        },
-        Spotlights: {
-            active: false,
-            members: []
-        }
-    };
+    
     //Setup utility
     const utility = new Utility();
 
@@ -48,13 +28,6 @@ function animate() {
     // SET RAYCASTER
     const raycaster = new THREE.Raycaster();
 
-    let lightBarProps = {
-        DirectionalLight: false,
-        HemisphereLight: false,
-        AmbientLight: false,
-        PointLight: true,
-        Spotlights: false,
-    }
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x21252d);
@@ -67,84 +40,12 @@ function animate() {
 
     });
 
-    function setLight(type, active) {
-        if (active) {
-            light_objects[type].members.forEach(light => scene.add(light));
-        } else {
-            light_objects[type].members.forEach(light => scene.remove(light));
-            light_objects[type].active = false;
-        }
-    }
+    // Setup the lighting
+    const light = new Light();
+    light.initialize();
+    light.setLight('PointLight', true, scene);
 
-    // Directional Light
-    {
-        function DirectionalFactory(color, intensity, position) {
-            const light = new THREE.DirectionalLight(color, intensity);
-            light.position.set(position[0], position[1], position[2]);
-            return light;
-        }
-
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [-25, 50, 25]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [25, 50, 25]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [-25, 50, -25]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [25, 50, -25]));
-
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [-30, 0, 30]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [30, 0, 30]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [-30, 0, -30]));
-        light_objects.DirectionalLight.members.push(DirectionalFactory(0xFFFFFF, 0.3, [30, 0, -30]));
-    }
-
-    // HemisphereLight
-    {
-        const skyColor = utility.generateRandomColor();  // light blue
-        const groundColor = utility.generateRandomColor();  // brownish orange
-        const intensity = 1;
-        const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-
-        light_objects.HemisphereLight.members.push(light);
-    }
-
-    // AmbientLight
-    {
-        const color = 0xFFFFFF;
-        const intensity = 1;
-        const light = new THREE.AmbientLight(color, intensity);
-        light_objects.AmbientLight.members.push(light);
-    }
-
-    // PointLight
-    {
-        function PointLightFactory(color, intensity, position) {
-            const light = new THREE.PointLight(color, intensity);
-            light.position.set(position[0], position[1], position[2]);
-            return light;
-        }
-
-        light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [-25, 50, 25]));
-        light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [25, 50, 25]));
-        light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [-25, 50, -25]));
-        light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [25, 50, -25]));
-
-        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [-30, 0, 30]));
-        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [30, 0, 30]));
-        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [-30, 0, -30]));
-        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [30, 0, -30]));
-    }
-
-    // Spotlights
-    {
-        function SpotLightFactory(color, intensity, position, target_pos) {
-            const light = new THREE.SpotLight(color, intensity);
-            light.position.set(position[0], position[1], position[2]);
-            light.target.position.set(position[0], position[1], position[2]);
-            return light;
-        }
-        light_objects.Spotlights.members.push(SpotLightFactory(utility.generateRandomColor(), 1, [-25, 50, 25], [0, 0, 0]));
-        light_objects.Spotlights.members.push(SpotLightFactory(utility.generateRandomColor(), 1, [25, 50, 25], [0, 0, 0]));
-    }
-
-    setLight('PointLight', true);
+    
 
     const axesHelper = new THREE.AxesHelper(40);
     scene.add(axesHelper);
