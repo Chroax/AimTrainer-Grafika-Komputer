@@ -4,8 +4,8 @@ function selectObject(object) {
   let new_position = null;
   while (true) {
     new_position = [
-      getRndInteger(boundary_x_min, boundary_x_max),
-      getRndInteger(boundary_y_min, boundary_y_max),
+      getRndInteger(boundary.x.min, boundary.x.max),
+      getRndInteger(boundary.y.min, boundary.y.max),
       0,
     ];
     let isOK = true;
