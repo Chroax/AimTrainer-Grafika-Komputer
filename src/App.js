@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
+import Utility from './lib/Utility';
 
 let GAME_STATE = "IDLE";
 let MAX_TIME = prompt("MAX_TIME (s)");
@@ -35,19 +36,8 @@ function animate() {
             members: []
         }
     };
-
-    function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
-    function generateRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '0x';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return parseInt(color, 16);
-    }
+    //Setup utility
+    const utility = new Utility();
 
     // Setup the camera
     const initCamera = new Camera('#canvas');
@@ -107,8 +97,8 @@ function animate() {
 
     // HemisphereLight
     {
-        const skyColor = generateRandomColor();  // light blue
-        const groundColor = generateRandomColor();  // brownish orange
+        const skyColor = utility.generateRandomColor();  // light blue
+        const groundColor = utility.generateRandomColor();  // brownish orange
         const intensity = 1;
         const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
 
@@ -136,10 +126,10 @@ function animate() {
         light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [-25, 50, -25]));
         light_objects.PointLight.members.push(PointLightFactory(0xffffff, 1, [25, 50, -25]));
 
-        light_objects.PointLight.members.push(PointLightFactory(generateRandomColor(), 1, [-30, 0, 30]));
-        light_objects.PointLight.members.push(PointLightFactory(generateRandomColor(), 1, [30, 0, 30]));
-        light_objects.PointLight.members.push(PointLightFactory(generateRandomColor(), 1, [-30, 0, -30]));
-        light_objects.PointLight.members.push(PointLightFactory(generateRandomColor(), 1, [30, 0, -30]));
+        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [-30, 0, 30]));
+        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [30, 0, 30]));
+        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [-30, 0, -30]));
+        light_objects.PointLight.members.push(PointLightFactory(utility.generateRandomColor(), 1, [30, 0, -30]));
     }
 
     // Spotlights
@@ -150,8 +140,8 @@ function animate() {
             light.target.position.set(position[0], position[1], position[2]);
             return light;
         }
-        light_objects.Spotlights.members.push(SpotLightFactory(generateRandomColor(), 1, [-25, 50, 25], [0, 0, 0]));
-        light_objects.Spotlights.members.push(SpotLightFactory(generateRandomColor(), 1, [25, 50, 25], [0, 0, 0]));
+        light_objects.Spotlights.members.push(SpotLightFactory(utility.generateRandomColor(), 1, [-25, 50, 25], [0, 0, 0]));
+        light_objects.Spotlights.members.push(SpotLightFactory(utility.generateRandomColor(), 1, [25, 50, 25], [0, 0, 0]));
     }
 
     setLight('PointLight', true);
@@ -179,7 +169,7 @@ function animate() {
         let new_position = null;
 
         while (true) {
-            new_position = [getRndInteger(boundary.x.min, boundary.x.max), getRndInteger(boundary.y.min, boundary.y.max), 0];
+            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), 0];
             let isOK = true;
             for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
                 if (
@@ -220,7 +210,7 @@ function animate() {
 
     let color_list = [];
     for (let i = 0; i < max_color; i++) {
-        color_list.push({ color: generateRandomColor(), displayed: 0 });
+        color_list.push({ color: utility.generateRandomColor(), displayed: 0 });
     }
 
     function resizeRendererToDisplaySize(renderer) {
@@ -241,7 +231,7 @@ function animate() {
     function selectObject(object) {
         let new_position = null;
         while (true) {
-            new_position = [getRndInteger(boundary.x.min, boundary.x.max), getRndInteger(boundary.y.min, boundary.y.max), 0];
+            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), 0];
             let isOK = true;
             for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
                 if (CLICKABLE_OBJ[i] == object) continue;
