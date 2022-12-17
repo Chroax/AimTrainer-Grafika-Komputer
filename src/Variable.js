@@ -8,4 +8,10 @@ let THIS_ACTIVE = true;
 let CLICKABLE_OBJ = [];
 let SPHERE_RADIUS = 5;
 let MAX_TARGET = 3;
+let DISTANCE = 10;
 let score = 0;
+let boundary = {
+  x: { min: -20, max: 20 },
+  y: { min: -20, max: 20 },
+  z: { min: -100, max: -8 },
+}
