@@ -1,19 +1,9 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
 import Utility from './lib/Utility';
-
-let GAME_STATE = "IDLE";
-let MAX_TIME = prompt("MAX_TIME (s)");
-let START_TIME = null;
-let HIGH_SCORE = localStorage.getItem("highscore") ? localStorage.getItem("highscore") : 0;
+import EventListener from './lib/EventListener';
 
 function animate() {
-    let THIS_ACTIVE = true;
-    let CLICKABLE_OBJ = [];
-    let SPHERE_RADIUS = 5;
-    let MAX_TARGET = 3;
-    let score = 0;
-
     let light_objects = {
         DirectionalLight: {
             active: true,
@@ -36,6 +26,9 @@ function animate() {
             members: []
         }
     };
+    //Setup EventListener
+    const eventListener = new EventListener();
+
     //Setup utility
     const utility = new Utility();
 
@@ -58,14 +51,8 @@ function animate() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x21252d);
-
-    document.body.addEventListener('mousemove', (event) => {
-        if (document.pointerLockElement === document.body) {
-            camera.rotation.y -= event.movementX / 500;
-            camera.rotation.x -= event.movementY / 500;
-        }
-
-    });
+    
+    eventListener.addMouseMove(camera);
 
     function setLight(type, active) {
         if (active) {
@@ -228,65 +215,7 @@ function animate() {
         addBall();
     }
 
-    function selectObject(object) {
-        let new_position = null;
-        while (true) {
-            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), 0];
-            let isOK = true;
-            for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
-                if (CLICKABLE_OBJ[i] == object) continue;
-
-                if (
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= SPHERE_RADIUS
-                    ||
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= SPHERE_RADIUS
-                ) {
-                    isOK = false;
-                    break;
-                }
-            }
-            if (isOK) {
-                break;
-            }
-        }
-        let position = new_position;
-
-        object.item.solid.position.set(position[0], position[1], position[2]);
-        score += 100;
-        document.querySelector('#score').innerHTML = score;
-    }
-
-    document.body.addEventListener("click", (event) => {
-        if (!THIS_ACTIVE) return;
-        if (event.which == 3) {
-            selected_object.forEach((item) => {
-                scene.remove(item.item.wireframe);
-            });
-        }
-        document.body.requestPointerLock()
-
-        let middle_point = new THREE.Vector2(0, 0);
-        raycaster.setFromCamera(middle_point, camera);
-        var intersects = raycaster.intersectObjects(scene.children); //array
-
-        let objectTerklik = false;
-        intersects.forEach((obj) => {
-            CLICKABLE_OBJ.forEach((C_OBJ) => {
-                if (C_OBJ.item.solid == obj.object) {
-                    selectObject(C_OBJ);
-                    objectTerklik = true;
-                    const audio_click = new Audio('src/assets/roblox_death.mp3');
-                    audio_click.play();
-                }
-            })
-        });
-        if (!objectTerklik) {
-            score -= 10;
-            document.querySelector('#score').innerHTML = score;
-            const audio_wiff = new Audio('src/assets/bruh.mp3');
-            audio_wiff.play();
-        }
-    }, true);
+    eventListener.addMouseClickListener(camera, scene, raycaster)
 
     function render() {
         let currentTime = new Date();

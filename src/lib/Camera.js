@@ -2,19 +2,12 @@ import * as THREE from 'three';
 export default class Camera {
 
   constructor(canvasId) {
-    this.scene = undefined;
     this.camera = undefined;
     this.renderer = undefined;
     this.fov = undefined;
     this.nearPlane = undefined;
     this.farPlane = undefined;
     this.canvasId = canvasId;
-    this.clock = undefined;
-    this.stats = undefined;
-    this.controls = undefined;
-    this.spotLight = undefined;
-    this.directionalLight = undefined;
-    this.ambientLight = undefined;
   }
 
   initialize(fov, nearPlane, farPlane) {
@@ -38,7 +31,7 @@ export default class Camera {
       antialias: true,
       powerPreference: "high-performance",
       alpha: false
-  });
+    });
 
     this.renderer.setPixelRatio(window.devicePixelRatio);
   }
