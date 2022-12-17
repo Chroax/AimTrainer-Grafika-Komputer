@@ -27,13 +27,6 @@ export default class Light {
             members: []
         }
     };
-    this.BarProps = {
-        DirectionalLight: false,
-        HemisphereLight: false,
-        AmbientLight: false,
-        PointLight: false,
-        Spotlights: false,
-    }
   }
   setLight(type, active) {
     if (active) {

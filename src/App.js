@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import Camera from './lib/Camera';
 import Utility from './lib/Utility';
 import Light from './lib/Light';
+import Arena from './lib/Arena';
 
 let GAME_STATE = "IDLE";
 let MAX_TIME = prompt("MAX_TIME (s)");
@@ -46,10 +47,10 @@ function animate() {
     //DirectionalLight, HemisphereLight, AmbientLight, PointLight, SpotLight
     light.setLight('PointLight', true);
 
-    
+    // Setup the arena
+    const arena = new Arena(scene);
+    arena.initialize();
 
-    const axesHelper = new THREE.AxesHelper(40);
-    scene.add(axesHelper);
 
     function ballFactory(color) {
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
