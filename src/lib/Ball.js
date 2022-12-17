@@ -49,7 +49,7 @@ function ballFactory(color, SPHERE_RADIUS){
     return obj;
 }
 
-function addBall(boundary, DISTANCE, SPHERE_RADIUS){
+function addBall(boundary, DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ){
     let color = 0xff2222;
 
     let new_position = null;
