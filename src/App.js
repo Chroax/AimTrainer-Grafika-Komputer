@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
 import Utility from './lib/Utility';
+import Renderer from './lib/Renderer';
 
 import EventListener from './lib/EventListener';
 import Light from './lib/Light';
@@ -9,6 +10,9 @@ function animate() {
     const eventListener = new EventListener();
     //Setup utility
     const utility = new Utility();
+
+    //setup render
+    const rendering = new Renderer();
 
     // Setup the camera
     const initCamera = new Camera('#canvas');
@@ -97,66 +101,14 @@ function animate() {
         color_list.push({ color: utility.generateRandomColor(), displayed: 0 });
     }
 
-    function resizeRendererToDisplaySize(renderer) {
-        const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
-        if (needResize) {
-            renderer.setSize(width, height, false);
-        }
-        return needResize;
-    }
-
     for (let i = 0; i < MAX_TARGET; i++) {
         addBall();
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
+    
 
-    function render() {
-        let currentTime = new Date();
-        var timeDiff = currentTime - START_TIME; //in ms
-        // strip the ms
-        timeDiff /= 1000;
-
-        // get seconds 
-        var seconds = Math.round(timeDiff);
-        if (seconds >= MAX_TIME) {
-            // alert(score);
-            if (score > HIGH_SCORE) {
-                HIGH_SCORE = score;
-            }
-            GAME_STATE = "IDLE";
-            document.querySelector('#mainmenu').style.display = 'flex';
-            document.querySelector('#crosshair').style.display = 'none';
-            document.querySelector('#score-container').style.display = 'none';
-            document.querySelector('#time-container').style.display = 'none';
-            document.exitPointerLock();
-            scene.clear();
-            THIS_ACTIVE = false;
-            // Game Ended, Then Show Score
-            localStorage.setItem("highscore", HIGH_SCORE);
-            document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
-            return;
-        }
-
-        document.querySelector('#time').innerHTML = MAX_TIME - seconds;
-
-        if (resizeRendererToDisplaySize(renderer)) {
-            console.log("RESIZED")
-            const canvas = renderer.domElement;
-            camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            camera.updateProjectionMatrix();
-        }
-
-        renderer.render(scene, camera);
-        if (GAME_STATE != "IDLE") {
-            requestAnimationFrame(render);
-        }
-    }
-
-    render();
+    rendering.render(camera, renderer, scene);
 
 };
 
