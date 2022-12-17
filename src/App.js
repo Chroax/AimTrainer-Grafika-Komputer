@@ -11,9 +11,9 @@ let HIGH_SCORE = localStorage.getItem("highscore") ? localStorage.getItem("highs
 function animate() {
     let THIS_ACTIVE = true;
     let CLICKABLE_OBJ = [];
-    let SPHERE_RADIUS = 5;
+    let SPHERE_RADIUS = 3;
     let MAX_TARGET = 3;
-    let BOUNDARIES = 20;
+    let BOUNDARIES = 15;
     let DISTANCE = 20;
     
     let score = 0;
