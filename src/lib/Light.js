@@ -31,7 +31,7 @@ export default class Light {
         DirectionalLight: false,
         HemisphereLight: false,
         AmbientLight: false,
-        PointLight: true,
+        PointLight: false,
         Spotlights: false,
     }
   }
