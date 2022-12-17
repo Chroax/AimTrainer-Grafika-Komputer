@@ -41,9 +41,9 @@ function animate() {
     });
 
     // Setup the lighting
-    const light = new Light();
+    const light = new Light(scene);
     light.initialize();
-    light.setLight('PointLight', true, scene);
+    light.setLight('PointLight', true);
 
     
 

@@ -2,14 +2,11 @@ import * as THREE from 'three';
 import Utility from './Utility';
 export default class Light {
 
-  constructor(canvasId) {
-    this.scene = undefined;
+  constructor(scene) {
+    this.scene = scene;
     this.camera = undefined;
     this.renderer = undefined;
-    this.fov = undefined;
-    this.nearPlane = undefined;
-    this.farPlane = undefined;
-    this.canvasId = canvasId;
+    this.canvasId = undefined;
     this.clock = undefined;
     this.stats = undefined;
     this.controls = undefined;
@@ -47,12 +44,12 @@ export default class Light {
         Spotlights: false,
     }
   }
-  setLight(type, active, scene) {
+  setLight(type, active) {
     if (active) {
-        this.objects[type].members.forEach(light => scene.add(light));
+        this.objects[type].members.forEach(light => this.scene.add(light));
         } 
     else {
-        this.objects[type].members.forEach(light => scene.remove(light));
+        this.objects[type].members.forEach(light => this.scene.remove(light));
         this.objects[type].active = false;
         }
     }
