@@ -5,6 +5,7 @@ let SPHERE_RADIUS = 0;
 let MAX_TARGET = 0;
 let BOUNDARIES = 0;
 let DISTANCE = 0;
+let CLICKABLE_OBJ = [];
 
 if(DIFFICULTY.toLowerCase === "h"){
     SPHERE_RADIUS = 3;
@@ -30,6 +31,8 @@ let boundary = {
     y:{min:-BOUNDARIES, max:BOUNDARIES},
 }
 // -----------------------------------------------------------------------------------
+
+import * as THREE from 'three';
 
 // fungsi buat ngbikin ballnya
 function ballFactory(color){
