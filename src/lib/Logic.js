@@ -1,21 +1,11 @@
-// untuk mendapatkan posisi random
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
+import { getRndInteger } from "./utilityfunc.js";
 // fungsi untuk memindahkan elemen ketika berhasil di klik
-function selectObject(
-  object,
-  boundary_x_min,
-  boundary_x_max,
-  boundary_y_min,
-  boundary_y_max
-) {
+function selectObject(object) {
   let new_position = null;
   while (true) {
     new_position = [
-      getRndInteger(boundary_x_min, boundary_x_max),
-      getRndInteger(boundary_y_min, boundary_y_max),
+      getRndInteger(boundary.x.min, boundary.x.max),
+      getRndInteger(boundary.y.min, boundary.y.max),
       0,
     ];
     let isOK = true;
@@ -65,7 +55,7 @@ document.body.addEventListener(
         if (C_OBJ.item.solid == obj.object) {
           selectObject(C_OBJ);
           objectTerklik = true;
-          const audio_click = new Audio("./roblox_death.mp3");
+          const audio_click = new Audio("./assets/roblox_death.mp3");
           audio_click.play();
         }
       });
@@ -73,7 +63,7 @@ document.body.addEventListener(
     if (!objectTerklik) {
       score -= 10;
       document.querySelector("#score").innerHTML = score;
-      const audio_wiff = new Audio("./bruh.mp3");
+      const audio_wiff = new Audio("./assets/bruh.mp3");
       audio_wiff.play();
     }
   },
