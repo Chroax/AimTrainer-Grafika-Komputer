@@ -35,8 +35,6 @@ export default class EventListener {
               utility.selectObject(C_OBJ);
               score += 100;
               hit += 1;
-              // console.log(hit);
-              // console.log(click);
               document.querySelector("#score").innerHTML = score;
               objectTerklik = true;
               const audio_click = new Audio(AUDIO_CLICK_RIGHT);
@@ -46,12 +44,11 @@ export default class EventListener {
         });
         if (!objectTerklik) {
           score -= 10;
-          // console.log(click);
           document.querySelector("#score").innerHTML = score;
           const audio_wiff = new Audio(AUDIO_CLICK_WRONG);
           audio_wiff.play();
         }
-        accuracy = (hit / click) * 100;
+        accuracy = ((hit / click) * 100).toFixed(2);
         console.log(accuracy);
       },
       true
