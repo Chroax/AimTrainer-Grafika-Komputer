@@ -4,15 +4,6 @@ export default class Light {
 
   constructor(scene) {
     this.scene = scene;
-    this.camera = undefined;
-    this.renderer = undefined;
-    this.canvasId = undefined;
-    this.clock = undefined;
-    this.stats = undefined;
-    this.controls = undefined;
-    this.spotLight = undefined;
-    this.directionalLight = undefined;
-    this.ambientLight = undefined;
     this.utility = new Utility();
     this.objects = {
         DirectionalLight: {
