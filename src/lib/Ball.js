@@ -35,7 +35,7 @@ let boundary = {
 import * as THREE from 'three';
 
 // fungsi buat ngbikin ballnya
-function ballFactory(color){
+function ballFactory(color, SPHERE_RADIUS){
     const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
     const obj_material = new THREE.MeshLambertMaterial({color: color});
     
@@ -49,7 +49,7 @@ function ballFactory(color){
     return obj;
 }
 
-function addBall(){
+function addBall(boundary, DISTANCE, SPHERE_RADIUS){
     let color = 0xff2222;
 
     let new_position = null;
