@@ -3,6 +3,7 @@ import Camera from './lib/Camera';
 import Utility from './lib/Utility';
 import Light from './lib/Light';
 import Arena from './lib/Arena';
+import BallTexture from './lib/BallTexture';
 
 let GAME_STATE = "IDLE";
 let MAX_TIME = prompt("MAX_TIME (s)");
@@ -44,7 +45,7 @@ function animate() {
     // Setup the lighting
     const light = new Light(scene);
     light.initialize();
-    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, SpotLight
+    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, Spotlights
     light.setLight('PointLight', true);
 
     // Setup the arena
@@ -52,9 +53,11 @@ function animate() {
     arena.initialize();
 
 
-    function ballFactory(color) {
+    const ballTexture = new BallTexture();
+    function ballFactory(model) {
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
-        const obj_material = new THREE.MeshPhongMaterial({ color: color, shininess: 150 });
+        const texture = new THREE.TextureLoader().load(model.texture);
+        const obj_material = new THREE.MeshPhongMaterial({ map : texture, color: model.color, shininess: 150 });
 
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
         const wireframe_material = new THREE.LineBasicMaterial({ color: 0xffffff });
@@ -90,7 +93,8 @@ function animate() {
         }
 
         let position = new_position;
-        let obj = ballFactory(color);
+        let obj = ballFactory(ballTexture.getTexture(2)); //ini user input buat texture bola
+        
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
 
