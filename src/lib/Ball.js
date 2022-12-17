@@ -3,7 +3,7 @@ import Utility from './Utility';
 export default class Ball{
     // fungsi buat ngbikin ballnya
     ballFactory(color){
-        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
+        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS, 32, 16);
         const obj_material = new THREE.MeshPhongMaterial({ color: color, shininess: 150 });
         
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
@@ -28,9 +28,9 @@ export default class Ball{
             let isOK = true;
             for(let i=0; i<CLICKABLE_OBJ.length; i++){
                 if(
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= SPHERE_RADIUS
-                    ||
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= SPHERE_RADIUS
+                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= 2.5 * SPHERE_RADIUS
+                    &&
+                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= 2.5 * SPHERE_RADIUS
                 ){
                     isOK = false;
                     break;
@@ -43,6 +43,7 @@ export default class Ball{
     
         // ng init obj ball baru tsb, di add ke list dan ke scene
         let position = new_position;
+        position = [0, 0, 0]
         let obj = this.ballFactory(color, SPHERE_RADIUS);
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);

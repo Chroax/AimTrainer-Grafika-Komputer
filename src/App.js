@@ -15,7 +15,7 @@ function animate() {
 
     // Setup the camera
     const initCamera = new Camera('#canvas');
-    initCamera.initialize(90, 0.1, 1000);
+    initCamera.initialize(90, 10, 250);
     const camera = initCamera.camera;
     const renderer = initCamera.renderer;
 

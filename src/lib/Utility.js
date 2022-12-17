@@ -13,18 +13,22 @@ export default class Utility {
     return parseInt(color, 16);
   }
 
-  selectObject(object, ...CLICKABLE_OBJ) {
+  selectObject(object) {
     let new_position = null;
+    let index = 0;
     while (true) {
-      new_position = [this.getRndInteger(boundary.x.min, boundary.x.max), this.getRndInteger(boundary.y.min, boundary.y.max), DISTANCE];
+      new_position = [this.getRndInteger(boundary.x.min, boundary.x.max), this.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
       let isOK = true;
       for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
-        if (CLICKABLE_OBJ[i] == object) continue;
+        if (CLICKABLE_OBJ[i] == object){
+          index = i;
+          continue;
+        } 
 
         if (
-          Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= SPHERE_RADIUS
-          ||
-          Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= SPHERE_RADIUS
+          Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= 2.5 * SPHERE_RADIUS
+          &&
+          Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= 2.5 * SPHERE_RADIUS
         ) {
           isOK = false;
           break;
@@ -37,5 +41,6 @@ export default class Utility {
     let position = new_position;
 
     object.item.solid.position.set(position[0], position[1], position[2]);
+    
   }
 }
