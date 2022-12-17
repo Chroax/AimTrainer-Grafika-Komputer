@@ -43,32 +43,30 @@ export default class Light {
         light.position.set(position[0], position[1], position[2]);
         return light;
     };
-    DirectionalLight(){
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [-25, 50, 25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [25, 50, 25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [-25, 50, -25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [25, 50, -25]));
+    DirectionalLight(intensity){
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, 25]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, 25]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, -25]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, -25]));
 
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [-30, 0, 30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [30, 0, 30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [-30, 0, -30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, 0.3, [30, 0, -30]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, 30]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, 30]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, -30]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, -30]));
     }
 
     // HemisphereLight
-    HemisphereLight(){
+    HemisphereLight(intensity){
         const skyColor = this.utility.generateRandomColor(); 
         const groundColor = this.utility.generateRandomColor();  
-        const intensity = 1;
         const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
 
         this.objects.HemisphereLight.members.push(light);
     }
 
     // AmbientLight
-    AmbientLight(){
+    AmbientLight(intensity){
         const color = 0xFFFFFF;
-        const intensity = 1;
         const light = new THREE.AmbientLight(color, intensity);
         this.objects.AmbientLight.members.push(light);
     }
@@ -78,16 +76,16 @@ export default class Light {
         light.position.set(position[0], position[1], position[2]);
         return light;
     }
-    PointLight(){
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, 1, [-25, 50, 25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, 1, [25, 50, 25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, 1, [-25, 50, -25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, 1, [25, 50, -25]));
+    PointLight(intensity){
+        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, 25]));
+        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, 25]));
+        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, -25]));
+        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, -25]));
 
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), 1, [-30, 0, 30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), 1, [30, 0, 30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), 1, [-30, 0, -30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), 1, [30, 0, -30]));
+        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, 30]));
+        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, 30]));
+        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, -30]));
+        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, -30]));
     }
  
     // Spotlights   
@@ -97,17 +95,17 @@ export default class Light {
         light.target.position.set(position[0], position[1], position[2]);
         return light;
     }
-    SpotLight(){
-        this.objects.Spotlights.members.push(this.SpotLightFactory(this.utility.generateRandomColor(), 1, [-25, 50, 25], [0, 0, 0]));
-        this.objects.Spotlights.members.push(this.SpotLightFactory(this.utility.generateRandomColor(), 1, [25, 50, 25], [0, 0, 0]));
+    SpotLight(intensity){
+        this.objects.Spotlights.members.push(this.SpotLightFactory(this.utility.generateRandomColor(), intensity, [-25, 50, 25], [0, 0, 0]));
+        this.objects.Spotlights.members.push(this.SpotLightFactory(this.utility.generateRandomColor(), intensity, [25, 50, 25], [0, 0, 0]));
     }
 
     initialize(){
-        this.DirectionalLight();
-        this.HemisphereLight();
-        this.AmbientLight();
-        this.PointLight();
-        this.SpotLight();
+        this.DirectionalLight(0.5);
+        this.HemisphereLight(1);
+        this.AmbientLight(1);
+        this.PointLight(1);
+        this.SpotLight(1);
 
 
     }
