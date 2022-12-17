@@ -4,6 +4,7 @@ import Utility from './lib/Utility';
 
 import EventListener from './lib/EventListener';
 import Light from './lib/Light';
+import Ball from './lib/Ball';
 
 function animate() {
     const eventListener = new EventListener();
@@ -84,12 +85,7 @@ function animate() {
         return obj;
     }
 
-    let boundary = {
-        x: { min: -20, max: 20 },
-        y: { min: -20, max: 20 },
-        z: { min: -100, max: -8 },
-    }
-
+    const ball = new Ball();
     let max_color = 10;
 
     let color_list = [];
@@ -109,7 +105,7 @@ function animate() {
     }
 
     for (let i = 0; i < MAX_TARGET; i++) {
-        addBall();
+        ball.addBall(utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, scene);
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
