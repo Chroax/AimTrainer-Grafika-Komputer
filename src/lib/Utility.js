@@ -1,9 +1,4 @@
 export default class Utility {
-  boundary = {
-    x: { min: -20, max: 20 },
-    y: { min: -20, max: 20 },
-    z: { min: -100, max: -8 },
-  }
 
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -21,7 +16,7 @@ export default class Utility {
   selectObject(object, ...CLICKABLE_OBJ) {
     let new_position = null;
     while (true) {
-      new_position = [this.getRndInteger(this.boundary.x.min, this.boundary.x.max), this.getRndInteger(this.boundary.y.min, this.boundary.y.max), 0];
+      new_position = [this.getRndInteger(boundary.x.min, boundary.x.max), this.getRndInteger(boundary.y.min, boundary.y.max), DISTANCE];
       let isOK = true;
       for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
         if (CLICKABLE_OBJ[i] == object) continue;

@@ -1,11 +1,10 @@
 import * as THREE from 'three';
-
+import Utility from './Utility';
 export default class Ball{
-    
     // fungsi buat ngbikin ballnya
-    ballFactory(color, SPHERE_RADIUS){
+    ballFactory(color){
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
-        const obj_material = new THREE.MeshLambertMaterial({color: color});
+        const obj_material = new THREE.MeshPhongMaterial({ color: color, shininess: 150 });
         
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
         const wireframe_material = new THREE.LineBasicMaterial( { color: 0xffffff } );
@@ -16,15 +15,16 @@ export default class Ball{
     
         return obj;
     }
-    
-    addBall(a, b, DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, scene){
+
+    addBall(scene){
         let color = 0xff2222;
+        const utility = new Utility();
     
         let new_position = null;
         
         // buat ngpastiin posisi barunya ga berdempetan sama ball yg udah ada
         while(true){
-            new_position = [a, b, -DISTANCE];
+            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
             let isOK = true;
             for(let i=0; i<CLICKABLE_OBJ.length; i++){
                 if(

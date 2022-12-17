@@ -1,15 +1,17 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
-import Utility from './lib/Utility';
 
 import EventListener from './lib/EventListener';
 import Light from './lib/Light';
 import Ball from './lib/Ball';
+import Utility from './lib/Utility';
 
 function animate() {
-    const eventListener = new EventListener();
-    //Setup utility
+    // Setup the utility
     const utility = new Utility();
+
+    // Setup the event listener
+    const eventListener = new EventListener();
 
     // Setup the camera
     const initCamera = new Camera('#canvas');
@@ -34,58 +36,8 @@ function animate() {
     const axesHelper = new THREE.AxesHelper(40);
     scene.add(axesHelper);
 
-    function ballFactory(color) {
-        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
-        const obj_material = new THREE.MeshPhongMaterial({ color: color, shininess: 150 });
-
-        const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
-        const wireframe_material = new THREE.LineBasicMaterial({ color: 0xffffff });
-
-        let obj = {}
-        obj.solid = new THREE.Mesh(obj_geometry, obj_material);
-        obj.wireframe = new THREE.LineSegments(wireframe_geometry, wireframe_material);
-
-        return obj;
-    }
-
-    function addBall() {
-        let color = 0xff2222;
-
-        let new_position = null;
-
-        while (true) {
-            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), 0];
-            let isOK = true;
-            for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
-                if (
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= SPHERE_RADIUS
-                    ||
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= SPHERE_RADIUS
-                ) {
-                    isOK = false;
-                    break;
-                }
-            }
-            if (isOK) {
-                break;
-            }
-        }
-
-        let position = new_position;
-        let obj = ballFactory(color);
-        obj.solid.position.set(position[0], position[1], position[2]);
-        obj.wireframe.position.set(position[0], position[1], position[2]);
-
-        CLICKABLE_OBJ.push({
-            item: obj,
-            color: color
-        });
-
-        scene.add(obj.solid);
-        return obj;
-    }
-
     const ball = new Ball();
+
     let max_color = 10;
 
     let color_list = [];
@@ -105,7 +57,7 @@ function animate() {
     }
 
     for (let i = 0; i < MAX_TARGET; i++) {
-        ball.addBall(utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, scene);
+        ball.addBall(scene);
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
