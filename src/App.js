@@ -57,6 +57,9 @@ function animate() {
     function ballFactory(model) {
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
         const texture = new THREE.TextureLoader().load(model.texture);
+        texture.wrapS = THREE.RepeatWrapping; 
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(model.repeat, model.repeat);
         const obj_material = new THREE.MeshPhongMaterial({ map : texture, color: model.color, shininess: 150 });
 
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
@@ -94,7 +97,7 @@ function animate() {
 
         let position = new_position;
         let obj = ballFactory(ballTexture.getTexture(2)); //ini user input buat texture bola
-        
+
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
 

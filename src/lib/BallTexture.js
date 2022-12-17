@@ -16,7 +16,7 @@ export default class BallTexture{
             },
             {
                 texture : './src/assets/images/wall.png',
-                repeat : 1,
+                repeat : 2,
                 color : undefined
             }
         ]
