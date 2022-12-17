@@ -7,7 +7,7 @@ export default class Light {
     this.utility = new Utility();
     this.objects = {
         DirectionalLight: {
-            active: true,
+            active: false,
             members: []
         },
         HemisphereLight: {

@@ -43,6 +43,7 @@ function animate() {
     // Setup the lighting
     const light = new Light(scene);
     light.initialize();
+    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, SpotLight
     light.setLight('PointLight', true);
 
     
