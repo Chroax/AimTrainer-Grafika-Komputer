@@ -62,13 +62,28 @@ function animate() {
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
 
+    function updateFPS(){
+        use_fps = (raw_fps*1000)/(currentTime_for_fps - lastupdateTime_for_fps);
+        console.log(use_fps);
+        raw_fps = 0;
+        lastupdateTime_for_fps = performance.now();
+    }
+    setInterval(updateFPS, 1000);
     function render() {
         let currentTime = new Date();
         var timeDiff = currentTime - START_TIME; //in ms
         // strip the ms
         timeDiff /= 1000;
+        //fps
+        currentTime_for_fps = performance.now();
+        elapsedTime_for_fps = currentTime_for_fps - previousTime_for_fps;
+        previousTime_for_fps = currentTime_for_fps;
+        raw_fps++;
+        // if(currentTime_for_fps - lastupdateTime_for_fps < 1000){
+        // fps += 1 / elapsedTime_for_fps;
+        // }
+        ///end of fps
 
-        // get seconds 
         var seconds = Math.round(timeDiff);
         if (seconds >= MAX_TIME) {
             // alert(score);
@@ -103,7 +118,7 @@ function animate() {
             requestAnimationFrame(render);
         }
     }
-
+    updateFPS();
     render();
 
 };
