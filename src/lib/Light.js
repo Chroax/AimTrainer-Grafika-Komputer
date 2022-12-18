@@ -28,15 +28,16 @@ export default class Light {
         }
     };
   }
-  setLight(type, active) {
-    if (active) {
-        this.objects[type].members.forEach(light => this.scene.add(light));
-        } 
-    else {
-        this.objects[type].members.forEach(light => this.scene.remove(light));
-        this.objects[type].active = false;
+    setLight(type, active) {
+        if (active) {
+            this.objects[type].members.forEach(light => this.scene.add(light));
+            } 
+        else {
+            this.objects[type].members.forEach(light => this.scene.remove(light));
+            this.objects[type].active = false;
+            }
         }
-    }
+    
     // Directional Light
     DirectionalFactory(color, intensity, position) {
         const light = new THREE.DirectionalLight(color, intensity);
@@ -104,7 +105,7 @@ export default class Light {
         this.DirectionalLight(0.5);
         this.HemisphereLight(1);
         this.AmbientLight(1);
-        this.PointLight(1);
+        this.PointLight(0.2);
         this.SpotLight(1);
 
 

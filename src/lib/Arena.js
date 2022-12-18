@@ -5,11 +5,11 @@ export default class Light {
         this.scene = scene;
         this.utility = new Utility();
         this.sphere_radius = 10;
-        this.size = 100;
+        this.size = 200;
         this.objects = {
             floor: {
                 texture: './src/assets/images/floor.png',
-                repeat: 5,
+                repeat: 10,
                 color: 0xffffff,
                 rotation: {
                     x: true,
@@ -19,11 +19,11 @@ export default class Light {
                 height: this.size,
                 x: 0,
                 y: -50,
-                z: this.size >> 1
+                z: 50
             },
             roof: {
                 texture: './src/assets/images/roof.png',
-                repeat: 5,
+                repeat: 10,
                 color: 0xffffff,
                 rotation: {
                     x: true,
@@ -33,11 +33,11 @@ export default class Light {
                 height: this.size,
                 x: 0,
                 y: 50,
-                z: this.size >> 1
+                z: 50
             },
             wall_front: {
                 texture: './src/assets/images/wall.png',
-                repeat: 5,
+                repeat: 10,
                 color: 0xff00ff,
                 rotation: {
                     x: false,
@@ -45,13 +45,13 @@ export default class Light {
                 },
                 x: 0,
                 y: 0,
-                z: 0,
-                width: 100,
-                height: 100
+                z: -50,
+                width: this.size,
+                height: this.size
             },
             wall_back: {
                 texture: undefined,
-                repeat: 5,
+                repeat: 10,
                 color: 0x000000,
                 rotation: {
                     x: false,
@@ -61,11 +61,11 @@ export default class Light {
                 height: this.size,
                 x: 0,
                 y: 0,
-                z: this.size
+                z: 50
             },
             wall_left: {
                 texture: './src/assets/images/wall.png',
-                repeat: 5,
+                repeat: 10,
                 color: 0xffff00,
                 rotation: {
                     x: false,
@@ -73,13 +73,13 @@ export default class Light {
                 },
                 width: this.size,
                 height: this.size,
-                x: -this.size >> 1,
-                y: 0,
-                z: this.size >> 1
+                x: -50,
+                y: 50,
+                z: 50
             },
             wall_right: {
                 texture: './src/assets/images/wall.png',
-                repeat: 5,
+                repeat: 10,
                 color: 0xff0000,
                 rotation: {
                     x: false,
@@ -87,9 +87,9 @@ export default class Light {
                 },
                 width: this.size,
                 height: this.size,
-                x: this.size >> 1,
-                y: 0,
-                z: this.size >> 1
+                x: 50,
+                y: 50,
+                z: 50
             }
         };
 

@@ -35,6 +35,7 @@ function animate() {
     light.initialize();
     //DirectionalLight, HemisphereLight, AmbientLight, PointLight, Spotlights
     light.setLight('PointLight', true);
+    light.setLight('HemisphereLight', true);
 
     // Setup the arena
     const arena = new Arena(scene);
