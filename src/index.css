@@ -30,6 +30,35 @@ html {
   text-align: center;
 }
 
+#accuracy-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 24px;
+  font-weight: 800;
+  top: 0;
+  align-items: right;
+  justify-content: center;
+  color: #FFFFFF;
+  text-align: right;
+}
+
+#fps-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0px 0px 0px 10px;
+  top: 0;
+  align-items: left;
+  justify-content: left;
+  color: #FFFFFF;
+  text-align: center;
+}
+
 
 .glowing-text {
   text-shadow: 0 0 10px #0088ff, 0 0 30px #0088ff,0 0 50px #0088ff,0 0 70px #0088ff;
@@ -183,4 +212,9 @@ input {
   height: 30px;
   width: 60px;
   justify-content: center;
+}
+
+#fps{
+  font-size: 10px;
+  text-shadow: 0 0 10px #00ff51, 0 0 30px #00ff51,0 0 50px #00ff51,0 0 70px #00ff51;
 }

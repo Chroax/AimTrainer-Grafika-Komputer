@@ -5,11 +5,14 @@ import EventListener from './lib/EventListener';
 import Light from './lib/Light';
 import Ball from './lib/Ball';
 import Utility from './lib/Utility';
+import Stats from './lib/Stats';
 
 function animate() {
+    // Setup the statistic
+    const Stat = new Stats();
+
     // Setup the utility
     const utility = new Utility();
-
     // Setup the event listener
     const eventListener = new EventListener();
 
@@ -62,16 +65,18 @@ function animate() {
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
 
+    setInterval(Stat.updateFPS,1000);
+
     function render() {
         let currentTime = new Date();
-        var timeDiff = currentTime - START_TIME; //in ms
-        // strip the ms
+        var timeDiff = currentTime - START_TIME;
+
         timeDiff /= 1000;
 
-        // get seconds 
+        Stat.addRawFps();
+
         var seconds = Math.round(timeDiff);
         if (seconds >= MAX_TIME) {
-            // alert(score);
             if (score > HIGH_SCORE) {
                 HIGH_SCORE = score;
             }
@@ -83,6 +88,7 @@ function animate() {
             document.exitPointerLock();
             scene.clear();
             THIS_ACTIVE = false;
+
             // Game Ended, Then Show Score
             localStorage.setItem("highscore", HIGH_SCORE);
             document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
@@ -92,7 +98,6 @@ function animate() {
         document.querySelector('#time').innerHTML = MAX_TIME - seconds;
 
         if (resizeRendererToDisplaySize(renderer)) {
-            console.log("RESIZED")
             const canvas = renderer.domElement;
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
             camera.updateProjectionMatrix();
@@ -104,8 +109,8 @@ function animate() {
         }
     }
 
+    Stat.updateFPS();
     render();
-
 };
 
 let currentRunningProgram = null;
@@ -124,6 +129,7 @@ export function startGame() {
             document.querySelector('#crosshair').style.display = 'flex';
             document.querySelector('#score-container').style.display = 'flex';
             document.querySelector('#time-container').style.display = 'flex';
+            document.querySelector('#accuracy-container').style.display = 'flex';
             document.body.requestPointerLock();
             GAME_STATE = "PLAY";
             START_TIME = new Date();
