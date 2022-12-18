@@ -21,7 +21,7 @@ export default class Camera {
       this.nearPlane,
       this.farPlane
     )
-    this.camera.position.set(0, 0, 50);
+    this.camera.position.set(0, 0, 90);
 
     const canvas = document.querySelector(this.canvasId);
 
