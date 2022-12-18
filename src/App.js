@@ -6,6 +6,7 @@ import Arena from './lib/Arena';
 import Ball from './lib/Ball';
 import EventListener from './lib/EventListener';
 import Stats from './lib/Stats';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 function animate() {
 
@@ -22,6 +23,15 @@ function animate() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x21252d);
+
+    const loader = new GLTFLoader();
+    loader.load('src/assets/pistol/scene.gltf', (gltfScene) => {
+        gltfScene.scene.position.y = -10;
+        gltfScene.scene.position.x = 5;
+        gltfScene.scene.position.z = 37;
+        gltfScene.scene.scale.set(10, 10, 10);
+        scene.add(gltfScene.scene)
+    })
 
     eventListener.addMouseMove(camera);
 
