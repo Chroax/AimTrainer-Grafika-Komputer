@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-
 export default class BallTexture{
     constructor(){
         this.a = 0;
@@ -24,5 +22,4 @@ export default class BallTexture{
     getTexture(index){
         return this.textures[index];
     }
-
 }
