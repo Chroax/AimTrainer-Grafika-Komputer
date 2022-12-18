@@ -8,7 +8,7 @@ export default class Ball{
         this.utility = new Utility();
     
     }
-    // fungsi buat ngbikin ballnya
+
     ballFactory(model){
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
         let texture = undefined;
@@ -33,12 +33,9 @@ export default class Ball{
         return obj;
     }
 
-    addBall(scene, index){
-        let color = 0xff2222;
-    
+    addBall(scene){
         let new_position = null;
         
-        // buat ngpastiin posisi barunya ga berdempetan sama ball yg udah ada
         while(true){
             new_position = [this.utility.getRndInteger(boundary.x.min, boundary.x.max), this.utility.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
             let isOK = true;
@@ -57,10 +54,9 @@ export default class Ball{
             }
         }
     
-        // ng init obj ball baru tsb, di add ke list dan ke scene
         let position = new_position;
         position = [0, 0, 0]
-        let obj = this.ballFactory(this.ballTexture.getTexture(index)); //ini user input buat texture bola
+        let obj = this.ballFactory(this.ballTexture.getTexture(BALL_TEXTURE));
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
         

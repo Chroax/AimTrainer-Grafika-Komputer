@@ -20,10 +20,10 @@ export default class Utility {
       new_position = [this.getRndInteger(boundary.x.min, boundary.x.max), this.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
       let isOK = true;
       for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
-        if (CLICKABLE_OBJ[i] == object){
+        if (CLICKABLE_OBJ[i] == object) {
           index = i;
           continue;
-        } 
+        }
 
         if (
           Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= 2.5 * SPHERE_RADIUS
@@ -41,6 +41,17 @@ export default class Utility {
     let position = new_position;
 
     object.item.solid.position.set(position[0], position[1], position[2]);
-    
+
+  }
+
+  resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
   }
 }

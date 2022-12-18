@@ -8,21 +8,16 @@ import EventListener from './lib/EventListener';
 import Stats from './lib/Stats';
 
 function animate() {
-    // Setup the statistic
-    const Stat = new Stats();
 
-    // Setup the utility
+    const stat = new Stats();
     const utility = new Utility();
-    // Setup the event listener
     const eventListener = new EventListener();
 
-    // Setup the camera
     const initCamera = new Camera('#canvas');
     initCamera.initialize(40, 10, 250);
     const camera = initCamera.camera;
     const renderer = initCamera.renderer;
 
-    // SET RAYCASTER
     const raycaster = new THREE.Raycaster();
 
     const scene = new THREE.Scene();
@@ -30,48 +25,23 @@ function animate() {
 
     eventListener.addMouseMove(camera);
 
-    // Setup the lighting
     const light = new Light(scene);
     light.initialize();
-    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, Spotlights
     light.setLight('PointLight', true);
     light.setLight('HemisphereLight', true);
 
-    // Setup the arena
     const arena = new Arena(scene);
     arena.initialize();
-
-    // Setup the ball
     const ball = new Ball(scene);
 
-
-    let max_color = 10;
-
-    let color_list = [];
-    for (let i = 0; i < max_color; i++) {
-        color_list.push({ color: utility.generateRandomColor(), displayed: 0 });
-    }
-
-    function resizeRendererToDisplaySize(renderer) {
-        const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
-        if (needResize) {
-            renderer.setSize(width, height, false);
-        }
-        return needResize;
-    }
-
-    let index = 5; //pilihan texture bola
-    let DISTANCE = 0;
+    BALL_TEXTURE = 2;
     for (let i = 0; i < MAX_TARGET; i++) {
-        ball.addBall(scene, index);
+        ball.addBall(scene);
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
 
-    setInterval(Stat.updateFPS, 1000);
+    setInterval(stat.updateFPS, 1000);
 
     function render() {
         let currentTime = new Date();
@@ -79,7 +49,7 @@ function animate() {
 
         timeDiff /= 1000;
 
-        Stat.addRawFps();
+        stat.addRawFps();
 
         var seconds = Math.round(timeDiff);
         if (seconds >= MAX_TIME) {
@@ -103,7 +73,7 @@ function animate() {
 
         document.querySelector('#time').innerHTML = MAX_TIME - seconds;
 
-        if (resizeRendererToDisplaySize(renderer)) {
+        if (utility.resizeRendererToDisplaySize(renderer)) {
             const canvas = renderer.domElement;
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
             camera.updateProjectionMatrix();
@@ -115,7 +85,7 @@ function animate() {
         }
     }
 
-    Stat.updateFPS();
+    stat.updateFPS();
     render();
 };
 
