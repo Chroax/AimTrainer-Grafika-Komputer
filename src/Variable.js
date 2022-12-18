@@ -1,5 +1,5 @@
 let GAME_STATE = "IDLE";
-let MAX_TIME = prompt("MAX_TIME (s)");
+let MAX_TIME = 0;
 let START_TIME = null;
 let HIGH_SCORE = localStorage.getItem("highscore") ? localStorage.getItem("highscore") : 0;
 const AUDIO_CLICK_RIGHT = "/src/assets/roblox_death.mp3";

@@ -34,7 +34,19 @@
   <div id="mainmenu">
     <div class="menu-container" style="display: flex; flex-direction: column; justify-content: center;">
       <h3 class="glowing-text" style="margin: 0; line-height: 3rem; text-align: center;">AIM TRAINER</h3>
-      <button id="start-button" class="button">START</button>
+      <button id="start-button" class="start button">START</button>
+    </div>
+  </div>
+
+  <div class="popup">
+    <div class="popup-content">
+      <div class="content">
+        <img src="/src/assets/close.png" alt="" class="close">
+        <img src="/src/assets/hourglass.png" alt="waktu" class="hourglass">
+        <input type="text" name="time" id="time-form" placeholder="Time" required>
+        <h3 class="title">Insert Time</h3>
+      </div>
+      <button id="time-button" class="button time" onclick="startGame()">OK</button>
     </div>
   </div>
 
@@ -45,6 +57,14 @@
   <div data-video="-BmT8XcseqY" style="display: none;" data-autoplay="1" data-loop="1" id="youtube-audio"></div>
 
   <script>
+    document.getElementById("start-button").addEventListener("click", function () {
+      document.querySelector(".popup").style.display = "flex";
+    });
+
+    document.querySelector(".close").addEventListener("click", function () {
+      document.querySelector(".popup").style.display = "none";
+    });
+
     if (localStorage.getItem("highscore") != undefined && localStorage.getItem("highscore") != null) {
       document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
     }
@@ -52,8 +72,12 @@
       localStorage.setItem("highscore", 0);
     };
   </script>
+
   <script type="text/javascript" src="/src/Variable.js"></script>
-  <script type="module" src="/src/App.js"></script>
+  <script type="module">
+    import { startGame } from "/src/App.js";
+    window.startGame = startGame;
+  </script>
 </body>
 
 </html>

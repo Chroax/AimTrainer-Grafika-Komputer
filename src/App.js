@@ -110,14 +110,25 @@ function animate() {
 
 let currentRunningProgram = null;
 
-document.querySelector('#start-button').addEventListener('click', (event) => {
-    document.querySelector('#mainmenu').style.display = 'none';
-    document.querySelector('#crosshair').style.display = 'flex';
-    document.querySelector('#score-container').style.display = 'flex';
-    document.querySelector('#time-container').style.display = 'flex';
-    document.body.requestPointerLock();
-    GAME_STATE = "PLAY";
-    START_TIME = new Date();
-    document.querySelector('#score').innerHTML = 0;
-    currentRunningProgram = animate();
-})
+export function startGame() {
+    MAX_TIME = document.getElementById("time-form").value;
+
+    document.querySelector("#time-button").addEventListener("click", function () {
+        document.querySelector(".popup").style.display = "none";
+    });
+
+    if (MAX_TIME > 0)
+    {
+        document.querySelector('#time-button').addEventListener('click', (event) => {
+            document.querySelector('#mainmenu').style.display = 'none';
+            document.querySelector('#crosshair').style.display = 'flex';
+            document.querySelector('#score-container').style.display = 'flex';
+            document.querySelector('#time-container').style.display = 'flex';
+            document.body.requestPointerLock();
+            GAME_STATE = "PLAY";
+            START_TIME = new Date();
+            document.querySelector('#score').innerHTML = 0;
+            currentRunningProgram = animate();
+        });
+    }
+}
