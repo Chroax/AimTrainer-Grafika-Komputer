@@ -1,11 +1,19 @@
 import * as THREE from 'three';
-
+import BallTexture  from './BallTexture';
 export default class Ball{
+    constructor(scene){
+        this.scene = scene;
+        this.ballTexture = new BallTexture();
     
+    }
     // fungsi buat ngbikin ballnya
-    ballFactory(color, SPHERE_RADIUS){
+    ballFactory(model, SPHERE_RADIUS){
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
-        const obj_material = new THREE.MeshLambertMaterial({color: color});
+        const texture = new THREE.TextureLoader().load(model.texture);
+        texture.wrapS = THREE.RepeatWrapping; 
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(model.repeat, model.repeat);
+        const obj_material = new THREE.MeshPhongMaterial({ map : texture, color: model.color, shininess: 150 });
         
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
         const wireframe_material = new THREE.LineBasicMaterial( { color: 0xffffff } );
@@ -17,7 +25,8 @@ export default class Ball{
         return obj;
     }
     
-    addBall(a, b, DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, scene){
+    add(a, b, DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, index){
+        //index buat pilihan texture, lihat BallTexture.js untuk list pilihannya
         let color = 0xff2222;
     
         let new_position = null;
@@ -43,7 +52,7 @@ export default class Ball{
     
         // ng init obj ball baru tsb, di add ke list dan ke scene
         let position = new_position;
-        let obj = this.ballFactory(color, SPHERE_RADIUS);
+        let obj = this.ballFactory(this.ballTexture.getTexture(index), SPHERE_RADIUS); //ini user input buat texture bola
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
         
@@ -52,7 +61,7 @@ export default class Ball{
             color: color
         });
     
-        scene.add(obj.solid);
+        this.scene.add(obj.solid);
         return obj;
     }
 }

@@ -133,7 +133,6 @@ export default class Light {
     }
 
     initialize(){
-        console.log(this.utility.boundary.x.min);
         this.addWall(this.objects.floor);
         this.addWall(this.objects.roof);
         this.addWall(this.objects.wall_front);

@@ -3,7 +3,7 @@ import Camera from './lib/Camera';
 import Utility from './lib/Utility';
 import Light from './lib/Light';
 import Arena from './lib/Arena';
-import BallTexture from './lib/BallTexture';
+import Ball from './lib/Ball';
 
 let GAME_STATE = "IDLE";
 let MAX_TIME = prompt("MAX_TIME (s)");
@@ -16,6 +16,11 @@ function animate() {
     let SPHERE_RADIUS = 5;
     let MAX_TARGET = 3;
     let score = 0;
+    let boundary = {
+        x: { min: -20, max: 20 },
+        y: { min: -20, max: 20 },
+        z: { min: -100, max: -8 },
+    };
 
     
     //Setup utility
@@ -52,69 +57,9 @@ function animate() {
     const arena = new Arena(scene);
     arena.initialize();
 
-
-    const ballTexture = new BallTexture();
-    function ballFactory(model) {
-        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
-        const texture = new THREE.TextureLoader().load(model.texture);
-        texture.wrapS = THREE.RepeatWrapping; 
-        texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(model.repeat, model.repeat);
-        const obj_material = new THREE.MeshPhongMaterial({ map : texture, color: model.color, shininess: 150 });
-
-        const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
-        const wireframe_material = new THREE.LineBasicMaterial({ color: 0xffffff });
-
-        let obj = {}
-        obj.solid = new THREE.Mesh(obj_geometry, obj_material);
-        obj.wireframe = new THREE.LineSegments(wireframe_geometry, wireframe_material);
-
-        return obj;
-    }
-
-    function addBall() {
-        let color = 0xff2222;
-
-        let new_position = null;
-
-        while (true) {
-            new_position = [utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), 0];
-            let isOK = true;
-            for (let i = 0; i < CLICKABLE_OBJ.length; i++) {
-                if (
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= SPHERE_RADIUS
-                    ||
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= SPHERE_RADIUS
-                ) {
-                    isOK = false;
-                    break;
-                }
-            }
-            if (isOK) {
-                break;
-            }
-        }
-
-        let position = new_position;
-        let obj = ballFactory(ballTexture.getTexture(2)); //ini user input buat texture bola
-
-        obj.solid.position.set(position[0], position[1], position[2]);
-        obj.wireframe.position.set(position[0], position[1], position[2]);
-
-        CLICKABLE_OBJ.push({
-            item: obj,
-            color: color
-        });
-
-        scene.add(obj.solid);
-        return obj;
-    }
-
-    let boundary = {
-        x: { min: -20, max: 20 },
-        y: { min: -20, max: 20 },
-        z: { min: -100, max: -8 },
-    }
+    // Setup the ball
+    const ball = new Ball(scene);
+    
 
     let max_color = 10;
 
@@ -134,8 +79,10 @@ function animate() {
         return needResize;
     }
 
+    let index = 2; //pilihan texture bola
+    let DISTANCE = 0;
     for (let i = 0; i < MAX_TARGET; i++) {
-        addBall();
+        ball.add(utility.getRndInteger(boundary.x.min, boundary.x.max), utility.getRndInteger(boundary.y.min, boundary.y.max), DISTANCE, SPHERE_RADIUS, CLICKABLE_OBJ, index);
     }
 
     function selectObject(object) {
