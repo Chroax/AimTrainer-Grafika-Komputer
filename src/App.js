@@ -110,7 +110,7 @@ function animate() {
 
 let currentRunningProgram = null;
 
-document.querySelector('#start-button').addEventListener('click', (event) => {
+document.querySelector('#play').addEventListener('click', (event) => {
     document.querySelector('#mainmenu').style.display = 'none';
     document.querySelector('#crosshair').style.display = 'flex';
     document.querySelector('#score-container').style.display = 'flex';

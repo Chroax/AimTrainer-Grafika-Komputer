@@ -3,10 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/aimtrainer.svg" />
+  <link rel="icon" type="image" href="/Vector.png" />
   <link rel="stylesheet" href="/src/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aim Trainer</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap"
+    />
+  <title>Aim Trainer 3D</title>
 </head>
 
 <body>
@@ -17,30 +21,41 @@
   </div>
 
   <div id="score-container" style="display: none;">
-    <h3 class="glowing-text" style="margin: 2rem 0 0;">SCORE</h3>
+    <h3 class="" style="margin: 2rem 0 0;">SCORE</h3>
     <h3 id="score" style="margin: 0;"></h3>
   </div>
 
   <div id="time-container" style="display: none;">
-    <h3 class="glowing-text" style="margin: 0 1rem 0 0;">TIME:</h3>
+    <h3 class="" style="margin: 0 1rem 0 0;">TIME:</h3>
     <h3 id="time" style="margin: 0;"></h3>
   </div>
 
   <div id="highscore-container">
-    <h3 class="glowing-text" style="margin: 0 1rem 0 0;">HIGHSCORE:</h3>
+    <h3 class="" style="margin: 0 1rem 0 0;">HIGHSCORE:</h3>
     <h3 id="highscore" style="margin: 0;"></h3>
   </div>
 
   <div id="mainmenu">
     <div class="menu-container" style="display: flex; flex-direction: column; justify-content: center;">
-      <h3 class="glowing-text" style="margin: 0; line-height: 3rem; text-align: center;">AIM TRAINER</h3>
-      <button id="start-button" class="button">START</button>
+      <h3 class="aim-trainer-3d" style="margin: 0; line-height: 3rem; text-align: center;">AIM TRAINER 3D</h3>
+      <img class="vector-icon" alt="" src="/Vector.png" />
+      <button class="group-button" id="play" type="button">
+        <div class="rectangle-div"></div>
+        <div class="play-now">Play Now</div></button>
+      
+      <button class="group-button2" id="target" type="button">
+        <div class="rectangle-div2"></div>
+        <div class="target">Target</div>
+
+      <button class="group-button1" id="cross-hair" type="button">
+        <div class="rectangle-div1"></div>
+        <div class="cross-hair">Cross Hair</div>
     </div>
   </div>
 
-  <div id="cred-container">
+  <!-- <div id="cred-container">
     <p id="cred" style="margin: 0; font-size: 16px;">Made with 🔥 by kelompok 4</p>
-  </div>
+  </div> -->
 
   <div data-video="-BmT8XcseqY" style="display: none;" data-autoplay="1" data-loop="1" id="youtube-audio"></div>
 
