@@ -23,11 +23,9 @@ export default class EventListener {
           });
         }
         document.body.requestPointerLock();
-
         let middle_point = new THREE.Vector2(0, 0);
         raycaster.setFromCamera(middle_point, camera);
         var intersects = raycaster.intersectObjects(scene.children); //array
-        click += 1;
         let objectTerklik = false;
         intersects.forEach((obj) => {
           CLICKABLE_OBJ.forEach((C_OBJ) => {
@@ -35,6 +33,7 @@ export default class EventListener {
               utility.selectObject(C_OBJ);
               score += 100;
               hit += 1;
+              click += 1;
               document.querySelector("#score").innerHTML = score;
               objectTerklik = true;
               const audio_click = new Audio(AUDIO_CLICK_RIGHT);
@@ -44,12 +43,12 @@ export default class EventListener {
         });
         if (!objectTerklik) {
           score -= 10;
+          click += 1;
           document.querySelector("#score").innerHTML = score;
           const audio_wiff = new Audio(AUDIO_CLICK_WRONG);
           audio_wiff.play();
         }
         accuracy = ((hit / click) * 100).toFixed(2);
-
         document.getElementById("accuracy").innerHTML = Math.floor(accuracy) + "%";
       },
       true
