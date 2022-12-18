@@ -3,19 +3,34 @@ export default class BallTexture{
         this.a = 0;
         this.textures = [
             {
-                texture : './src/assets/images/floor.png',
+                texture : undefined,
                 repeat : 1,
-                color : 0xFF00FF
+                color : 0xFF0000
             },
             {
-                texture : './src/assets/images/roof.png',
+                texture : './src/assets/images/american-football.jpg',
                 repeat : 1,
-                color : 0xFFFF00
+                color : undefined
             },
             {
-                texture : './src/assets/images/wall.png',
-                repeat : 2,
-                color : 0x00FFFF
+                texture : './src/assets/images/football.jpg',
+                repeat : 1,
+                color : undefined
+            },
+            {
+                texture : './src/assets/images/basketball.png',
+                repeat : 1,
+                color : undefined
+            },
+            {
+                texture : './src/assets/images/Metal_006_roughness.jpg',
+                repeat : 1,
+                color : undefined
+            },
+            {
+                texture : './src/assets/images/Metal_006_ambientOcclusion.jpg',
+                repeat : 1,
+                color : undefined
             }
         ]
     };

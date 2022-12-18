@@ -63,10 +63,10 @@ function animate() {
         return needResize;
     }
 
-    let index = 2; //pilihan texture bola
+    let index = 5; //pilihan texture bola
     let DISTANCE = 0;
     for (let i = 0; i < MAX_TARGET; i++) {
-        ball.addBall(scene);
+        ball.addBall(scene, index);
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
