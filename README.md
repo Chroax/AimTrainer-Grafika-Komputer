@@ -20,3 +20,6 @@
 ```
   npm run dev
 ```
+
+## Link Assets
+https://sketchfab.com/3d-models/lowpoly-generic-pistol-43-937ac20307bb470ca07d84ccae7507aa => PISTOL
