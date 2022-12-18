@@ -1,10 +1,20 @@
 import * as THREE from 'three';
 import Utility from './Utility';
+import BallTexture  from './BallTexture';
 export default class Ball{
+    constructor(scene){
+        this.scene = scene;
+        this.ballTexture = new BallTexture();
+    
+    }
     // fungsi buat ngbikin ballnya
-    ballFactory(color){
-        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS, 32, 16);
-        const obj_material = new THREE.MeshPhongMaterial({ color: color, shininess: 150 });
+    ballFactory(model){
+        const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
+        const texture = new THREE.TextureLoader().load(model.texture);
+        texture.wrapS = THREE.RepeatWrapping; 
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(model.repeat, model.repeat);
+        const obj_material = new THREE.MeshPhongMaterial({ map : texture, color: model.color, shininess: 150 });
         
         const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
         const wireframe_material = new THREE.LineBasicMaterial( { color: 0xffffff } );
@@ -44,7 +54,7 @@ export default class Ball{
         // ng init obj ball baru tsb, di add ke list dan ke scene
         let position = new_position;
         position = [0, 0, 0]
-        let obj = this.ballFactory(color, SPHERE_RADIUS);
+        let obj = this.ballFactory(this.ballTexture.getTexture(1)); //ini user input buat texture bola
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
         

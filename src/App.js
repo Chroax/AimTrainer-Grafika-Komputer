@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import Camera from './lib/Camera';
-
-import EventListener from './lib/EventListener';
-import Light from './lib/Light';
-import Ball from './lib/Ball';
 import Utility from './lib/Utility';
+import Light from './lib/Light';
+import Arena from './lib/Arena';
+import Ball from './lib/Ball';
+import EventListener from './lib/EventListener';
 import Stats from './lib/Stats';
 
 function animate() {
@@ -33,13 +33,16 @@ function animate() {
     // Setup the lighting
     const light = new Light(scene);
     light.initialize();
-    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, SpotLight
+    //DirectionalLight, HemisphereLight, AmbientLight, PointLight, Spotlights
     light.setLight('PointLight', true);
 
-    const axesHelper = new THREE.AxesHelper(40);
-    scene.add(axesHelper);
+    // Setup the arena
+    const arena = new Arena(scene);
+    arena.initialize();
 
-    const ball = new Ball();
+    // Setup the ball
+    const ball = new Ball(scene);
+    
 
     let max_color = 10;
 
@@ -59,6 +62,8 @@ function animate() {
         return needResize;
     }
 
+    let index = 2; //pilihan texture bola
+    let DISTANCE = 0;
     for (let i = 0; i < MAX_TARGET; i++) {
         ball.addBall(scene);
     }
