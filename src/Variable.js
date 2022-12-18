@@ -11,6 +11,7 @@ let CLICKABLE_OBJ = [];
 let SPHERE_RADIUS = 6;
 let MAX_TARGET = 3;
 let DISTANCE = 50;
+let BALL_TEXTURE = 0;
 let score = 0;
 let boundary = {
   x: { min: -35, max: 35 },

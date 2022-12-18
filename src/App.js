@@ -43,7 +43,7 @@ function animate() {
 
     // Setup the ball
     const ball = new Ball(scene);
-    
+
 
     let max_color = 10;
 
@@ -71,7 +71,7 @@ function animate() {
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
 
-    setInterval(Stat.updateFPS,1000);
+    setInterval(Stat.updateFPS, 1000);
 
     function render() {
         let currentTime = new Date();
@@ -128,14 +128,14 @@ export function startGame() {
         document.querySelector(".popup").style.display = "none";
     });
 
-    if (MAX_TIME > 0)
-    {
+    if (MAX_TIME > 0) {
         document.querySelector('#time-button').addEventListener('click', (event) => {
             document.querySelector('#mainmenu').style.display = 'none';
             document.querySelector('#crosshair').style.display = 'flex';
             document.querySelector('#score-container').style.display = 'flex';
             document.querySelector('#time-container').style.display = 'flex';
             document.querySelector('#accuracy-container').style.display = 'flex';
+            document.querySelector('#background').style.display = 'none';
             document.body.requestPointerLock();
             GAME_STATE = "PLAY";
             START_TIME = new Date();

@@ -12,6 +12,12 @@
 
   /* border radiuses */
   --br-md: 40px;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -32,53 +38,59 @@ html {
 }
 
 #score-container {
-  position: absolute;
-  display: flex;
+  font-family: var(--font-fredoka);
+  display: none;
   flex-direction: column;
-  width: 100%;
   font-size: 24px;
   font-weight: 800;
-  top: 0;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
   text-align: center;
 }
 
-#accuracy-container {
-  position: absolute;
+#highscore-container {
+  font-family: var(--font-fredoka);
+  color: var(--color-white);
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin-left: 20px;
   font-size: 24px;
   font-weight: 800;
-  top: 0;
+  align-items: left;
+  justify-content: center;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#accuracy-container {
+  font-family: var(--font-fredoka);
+  display: none;
+  flex-direction: column;
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: 800;
   align-items: right;
   justify-content: center;
   color: #FFFFFF;
-  text-align: right;
+  text-align: center;
 }
 
 #fps-container {
-  position: absolute;
+  font-family: var(--font-fredoka);
   display: flex;
   flex-direction: row;
   width: 100%;
   font-size: 15px;
   font-weight: 800;
-  margin: 0px 0px 0px 10px;
-  top: 0;
   align-items: left;
   justify-content: left;
   color: #FFFFFF;
   text-align: center;
 }
-
-
-/* .glowing-text {
-  text-shadow: 0 0 10px #0088ff, 0 0 30px #0088ff,0 0 50px #0088ff,0 0 70px #0088ff;
-} */
-
+#fps{
+  margin-left: 20px;
+}
 .aim-trainer-3d,
 .div,
 .high-score {
@@ -89,11 +101,13 @@ html {
   font-weight: 500;
   display: inline-block;
 }
+
 .aim-trainer-3d,
 .div {
   display: flex;
   left: 1828px;
 }
+
 .aim-trainer-3d {
   display: flex;
   top: 323px;
@@ -105,24 +119,9 @@ html {
   text-shadow: 0 5px 4px rgba(238, 238, 238, 0.4);
 }
 
-/* #mainmenu {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  font-size: 24px;
-  font-weight: 800;
-  top: 0;12
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .menu-container {
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
-  color: #FFFFFF;
-} */
+.glowing-text {
+  text-shadow: 0 0 10px #0088ff, 0 0 30px #0088ff,0 0 50px #0088ff,0 0 70px #0088ff;
+}
 
 .vector-icon {
   display: flex;
@@ -133,6 +132,7 @@ html {
   overflow: hidden;
   max-height: 100%;
 }
+
 .rectangle-div {
   display: flex;
   position: absolute;
@@ -144,6 +144,7 @@ html {
   width: 246px;
   height: 77px;
 }
+
 .play-now {
   display: flex;
   position: absolute;
@@ -156,104 +157,94 @@ html {
   text-align: center;
   display: inline-block;
 }
+
 .group-button,
-  .rectangle-div1 {
-    top: 0;
-    left: 0;
-    border-radius: var(--br-md);
-    background-color: #003c73;
-    display: flex;
-    position: absolute;
-    width: 246px;
-    height: 77px;
-  }
-  .rectangle-div2 {
-    top: 0;
-    left: 0;
-    border-radius: var(--br-md);
-    background-color: #003c73;
-    display: flex;
-    position: absolute;
-    width: 246px;
-    height: 77px;
-  }
-  .group-button {
-    display: flex;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    top: 445px;
-    left: 660px;
-  }
-  .cross-hair {
-    display: flex;
-    position: absolute;
-    top: 15px;
-    left: 40px;
-    font-size: var(--font-size-base);
-    font-weight: 500;
-    font-family: var(--font-fredoka);
-    color: var(--color-white);
-    text-align: center;
-    display: inline-block;
-  }
-  .group-button1 {
-    display: flex;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    position: absolute;
-    TOP: 550px;
-    left: 430px;
-    width: 246px;
-    height: 77px;
-  }
-  .target {
-    display: flex;
-    position: absolute;
-    top: 15px;
-    left: 70px;
-    font-size: var(--font-size-base);
-    font-weight: 500;
-    font-family: var(--font-fredoka);
-    color: var(--color-white);
-    text-align: center;
-    display: inline-block;
-  }
-  .group-button2 {
-    display: flex;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    position: absolute;
-    top: 550px;
-    left: 890px;
-    width: 246px;
-    height: 77px;
-  }
-/* .button {
-  margin: 1rem;
-  padding: 1rem;
-  font-size: 24px;
-  border: none;
-  border-radius: 15px;
-  background-color: rgba(0, 177, 255, 0.5);
-  color: #ffffff;
-  font-weight: bold;
-  transition-duration: 300ms;
+.rectangle-div1 {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-md);
+  background-color: #003c73;
+  display: flex;
+  position: absolute;
+  width: 246px;
+  height: 77px;
 }
 
-.button:hover {
-  transform: scale(1.05);
+.rectangle-div2 {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-md);
+  background-color: #003c73;
+  display: flex;
+  position: absolute;
+  width: 246px;
+  height: 77px;
+}
+
+.group-button {
+  display: flex;
   cursor: pointer;
-  background-color: rgba(0, 199, 255, 0.5);
-  transition-duration: 300ms;
-} */
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 445px;
+  left: 660px;
+}
+
+.cross-hair {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  left: 40px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-fredoka);
+  color: var(--color-white);
+  text-align: center;
+  display: inline-block;
+}
+
+.group-button1 {
+  display: flex;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  TOP: 550px;
+  left: 430px;
+  width: 246px;
+  height: 77px;
+}
+
+.target {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  left: 70px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-fredoka);
+  color: var(--color-white);
+  text-align: center;
+  display: inline-block;
+}
+
+.group-button2 {
+  display: flex;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 550px;
+  left: 890px;
+  width: 246px;
+  height: 77px;
+}
 
 #time-container {
+  font-family: var(--font-fredoka);
   position: absolute;
   display: flex;
   width: 100%;
@@ -266,49 +257,21 @@ html {
   text-align: center;
 }
 
-#highscore-container {
+.popup {
   font-family: var(--font-fredoka);
-  color: var(--color-white);
-  position: absolute;
-  display: flex;
-  font-size: 24px;
-  font-weight: 800;
-  top: 2rem;
-  right: 1rem;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  text-align: center;
-}
-
-
-/* #cred-container {
-  position: absolute;
-  display: flex;
-  font-size: 24px;
-  font-weight: 800;
-  bottom: 2rem;
-  right: 1rem;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  text-align: center;
-} */
-
-.popup{
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   position: absolute;
-  top : 0;
+  top: 0;
   display: none;
   justify-content: center;
   align-items: center;
 }
 
-.popup-content{
-  height:130px;
-  width:300px;
+.popup-content {
+  height: 130px;
+  width: 300px;
   background: #FFFFFF;
   padding: 20px;
   border-radius: 5px;
@@ -347,28 +310,50 @@ input {
   width: 80px;
 }
 
-.title{
+.title {
   position: absolute;
   top: 20px;
   left: 100px;
 }
 
-.time{
+.time {
   position: relative;
   margin: 0;
   padding: 0;
   top: 75%;
-  left: 40%;
+  left: 41%;
   font-size: 24px;
   border-radius: 5px;
   color: #ffffff;
+  background-color: #003c73;
   transition-duration: 300ms;
   height: 30px;
   width: 60px;
   justify-content: center;
 }
 
-#fps{
+#fps {
   font-size: 10px;
-  text-shadow: 0 0 10px #00ff51, 0 0 30px #00ff51,0 0 50px #00ff51,0 0 70px #00ff51;
+  text-shadow: 0 0 10px #00ff51, 0 0 30px #00ff51, 0 0 50px #00ff51, 0 0 70px #00ff51;
+}
+
+.value-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head{
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 1%;
+}
+
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
