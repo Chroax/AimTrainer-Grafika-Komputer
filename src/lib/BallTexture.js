@@ -5,17 +5,17 @@ export default class BallTexture{
             {
                 texture : './src/assets/images/floor.png',
                 repeat : 1,
-                color : 0xFFFFFF
+                color : 0xFF00FF
             },
             {
                 texture : './src/assets/images/roof.png',
                 repeat : 1,
-                color : 0xFFFFFF
+                color : 0xFFFF00
             },
             {
                 texture : './src/assets/images/wall.png',
                 repeat : 2,
-                color : 0xFFFFFF
+                color : 0x00FFFF
             }
         ]
     };
