@@ -5,11 +5,11 @@ import EventListener from './lib/EventListener';
 import Light from './lib/Light';
 import Ball from './lib/Ball';
 import Utility from './lib/Utility';
+import stats from './lib/fps';
 
 function animate() {
     // Setup the utility
     const utility = new Utility();
-
     // Setup the event listener
     const eventListener = new EventListener();
 
@@ -61,14 +61,8 @@ function animate() {
     }
 
     eventListener.addMouseClickListener(camera, scene, raycaster)
-
-    function updateFPS(){
-        use_fps = (raw_fps*1000)/(currentTime_for_fps - lastupdateTime_for_fps);
-        console.log(use_fps);
-        raw_fps = 0;
-        lastupdateTime_for_fps = performance.now();
-    }
-    setInterval(updateFPS, 1000);
+    const Stat = new stats();
+    setInterval(Stat.updateFPS,1000);
     function render() {
         let currentTime = new Date();
         var timeDiff = currentTime - START_TIME; //in ms
@@ -118,7 +112,7 @@ function animate() {
             requestAnimationFrame(render);
         }
     }
-    updateFPS();
+    Stat.updateFPS();
     render();
 
 };
