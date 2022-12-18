@@ -69,10 +69,7 @@ function animate() {
         // strip the ms
         timeDiff /= 1000;
         //fps
-        currentTime_for_fps = performance.now();
-        elapsedTime_for_fps = currentTime_for_fps - previousTime_for_fps;
-        previousTime_for_fps = currentTime_for_fps;
-        raw_fps++;
+        Stat.addRawFps();
         // if(currentTime_for_fps - lastupdateTime_for_fps < 1000){
         // fps += 1 / elapsedTime_for_fps;
         // }
