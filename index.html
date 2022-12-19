@@ -123,7 +123,12 @@
       </div>
     </div>
   </div>
-  <audio src="src\assets\background.mp3" id="music" autoplay loop></audio>
+
+  <audio controls preload="auto" id="music">
+    <source src="/src/assets/background.mp3" type="audio/mpeg" />
+    This text displays if the audio tag isn't supported.
+  </audio>
+
 
 
   <script type="text/javascript" src="/src/Variable.js"></script>
