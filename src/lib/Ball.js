@@ -35,7 +35,7 @@ export default class Ball{
     }
 
     addBall(scene){
-        let position = [0, 0, FIRST_BALL_Z];
+        let position = [this.utility.getRndInteger(boundary.x.min,boundary.x.max), this.utility.getRndInteger(boundary.y.min,boundary.y.max), -DISTANCE];
         let obj = this.ballFactory(this.ballTexture.getTexture(BALL_TEXTURE));
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);

@@ -44,19 +44,9 @@ export default class EventListener {
           CLICKABLE_OBJ.forEach((C_OBJ) => {
             if (C_OBJ.item.wireframe == obj.object) {
               utility.selectObject(C_OBJ);
-              if(three_shot > 2){
                 score += 100;
                 hit += 1;
                 click += 1;
-              }
-              else{
-                score = 100;
-                hit = 1;
-                click = 1;
-                three_shot += 1;
-              }
-              
-              
               document.querySelector("#score").innerHTML = score;
               objectTerklik = true;
               const audio_click = new Audio(AUDIO_CLICK_RIGHT);

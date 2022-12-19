@@ -91,7 +91,6 @@ let currentRunningProgram = null;
 export function startGame() {
     MAX_TIME = document.getElementById("time-form").value;
     THIS_ACTIVE = true;
-    three_shot = 0;
     document.querySelector("#time-button").addEventListener("click", function () {
         document.querySelector(".popup").style.display = "none";
     });

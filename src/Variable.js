@@ -19,7 +19,6 @@ let BALL_TEXTURE = localStorage.getItem("texture")
 ? localStorage.getItem("texture")
 : 0;
 let score = 0;
-let three_shot = 0;
 let boundary = {
   x: { min: -35, max: 35 },
   y: { min: -35, max: 35 },
