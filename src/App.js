@@ -28,7 +28,6 @@ function animate() {
     const light = new Light(scene);
     light.initialize();
     light.setLight('PointLight', true);
-    // light.setLight('HemisphereLight', true);
 
     const arena = new Arena(scene);
     arena.initialize();
@@ -46,8 +45,6 @@ function animate() {
     function render() {
         let currentTime = new Date();
         var timeDiff = currentTime - START_TIME;
-        // THIS_ACTIVE = true;
-        // three_shot = 0;
         timeDiff /= 1000;
 
         stat.addRawFps();
@@ -95,7 +92,7 @@ let currentRunningProgram = null;
 export function startGame() {
     MAX_TIME = document.getElementById("time-form").value;
     THIS_ACTIVE = true;
-    three_shot = 0; //tembakan awal agar poin cuma 100
+    three_shot = 0;
     document.querySelector("#time-button").addEventListener("click", function () {
         document.querySelector(".popup").style.display = "none";
     });
