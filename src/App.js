@@ -60,12 +60,18 @@ function animate() {
             document.querySelector('#mainmenu').style.display = 'flex';
             document.querySelector('#crosshair').style.display = 'none';
             document.querySelector('#score-container').style.display = 'none';
+            document.querySelector('#fps-container').style.display = 'none';
+            document.querySelector('#accuracy-container').style.display = 'none';
             document.querySelector('#time-container').style.display = 'none';
+            document.querySelector('#canvas').style.display = 'none';
+
             document.exitPointerLock();
             scene.clear();
             THIS_ACTIVE = false;
 
             // Game Ended, Then Show Score
+            // document.querySelector('#music').currentTime = 0;
+            // document.querySelector('#music').play();
             localStorage.setItem("highscore", HIGH_SCORE);
             document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
             return;
@@ -108,6 +114,7 @@ export function startGame() {
             document.querySelector('#time-container').style.display = 'flex';
             document.querySelector('#accuracy-container').style.display = 'flex';
             document.querySelector('#background').style.display = 'none';
+            document.getElementById("music").pause();
             document.body.requestPointerLock();
             GAME_STATE = "PLAY";
             START_TIME = new Date();

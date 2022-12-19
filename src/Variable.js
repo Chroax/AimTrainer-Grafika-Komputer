@@ -4,7 +4,7 @@ let START_TIME = null;
 let HIGH_SCORE = localStorage.getItem("highscore")
   ? localStorage.getItem("highscore")
   : 0;
-const AUDIO_CLICK_RIGHT = "/src/assets/roblox_death.mp3";
+const AUDIO_CLICK_RIGHT = "/src/assets/pistol.mp3";
 const AUDIO_CLICK_WRONG = "/src/assets/bruh.mp3";
 const BALL_IMG_SRC = "/src/assets/images/ball/";
 const BALL_IMG_EXT = ".png";
