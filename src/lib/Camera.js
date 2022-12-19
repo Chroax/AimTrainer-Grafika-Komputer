@@ -21,7 +21,7 @@ export default class Camera {
       this.nearPlane,
       this.farPlane
     )
-    this.camera.position.set(0, 0, 50);
+    this.camera.position.set(0, 0, CAMERA_Z);
 
     const canvas = document.querySelector(this.canvasId);
 
@@ -32,7 +32,11 @@ export default class Camera {
       powerPreference: "high-performance",
       alpha: false
     });
-
+    this.renderer.shadowMap.enabled = true;
+    // this.renderer.shadowMap.type = THREE.BasicShadowMap;
+    // this.renderer.shadowMap.type = THREE.PCFShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    // this.renderer.shadowMap.type = THREE.VSMShadowMap;
     this.renderer.setPixelRatio(window.devicePixelRatio);
   }
 }

@@ -11,6 +11,7 @@ export default class Ball{
 
     ballFactory(model){
         const obj_geometry = new THREE.SphereGeometry(SPHERE_RADIUS);
+        const wire_geometry = new THREE.SphereGeometry(SPHERE_RADIUS + 0.75);
         let texture = undefined;
         let obj_material = undefined;
         if(model.texture != undefined){
@@ -23,49 +24,30 @@ export default class Ball{
         else if(model.color != undefined){
             obj_material = new THREE.MeshPhongMaterial({color : model.color, shininess: 25 });
         }
-        const wireframe_geometry = new THREE.WireframeGeometry(obj_geometry);
-        const wireframe_material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+        const wire_material = new THREE.MeshBasicMaterial( );
     
         let obj = {}
         obj.solid = new THREE.Mesh(obj_geometry, obj_material);
-        obj.wireframe = new THREE.LineSegments(wireframe_geometry, wireframe_material);
-    
+        obj.wireframe = new THREE.Mesh(wire_geometry, wire_material);
+        obj.solid.castShadow = true;
+        obj.solid.receiveShadow = false;
         return obj;
     }
 
     addBall(scene){
-        let new_position = null;
-        
-        while(true){
-            new_position = [this.utility.getRndInteger(boundary.x.min, boundary.x.max), this.utility.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
-            let isOK = true;
-            for(let i=0; i<CLICKABLE_OBJ.length; i++){
-                if(
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= 2.5 * SPHERE_RADIUS
-                    &&
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= 2.5 * SPHERE_RADIUS
-                ){
-                    isOK = false;
-                    break;
-                }
-            }
-            if(isOK){
-                break;
-            }
-        }
-    
-        let position = new_position;
-        position = [0, 0, 0]
+        let position = [0, 0, FIRST_BALL_Z];
         let obj = this.ballFactory(this.ballTexture.getTexture(BALL_TEXTURE));
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
+        obj.wireframe.visible = false; //hitbox
         
         CLICKABLE_OBJ.push({
             item: obj,
-            color: 0xFFFFFF
+            color: 0xFFFF00
         });
     
         scene.add(obj.solid);
+        scene.add(obj.wireframe);
         return obj;
     }
 }

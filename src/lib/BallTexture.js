@@ -1,6 +1,5 @@
 export default class BallTexture{
     constructor(){
-        this.a = 0;
         this.textures = [
             {
                 texture : undefined,
