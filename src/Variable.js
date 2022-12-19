@@ -10,9 +10,12 @@ let THIS_ACTIVE = true;
 let CLICKABLE_OBJ = [];
 let SPHERE_RADIUS = 6;
 let MAX_TARGET = 3;
-let DISTANCE = 50;
+let DISTANCE = 100;
+let CAMERA_Z = 50;
+let FIRST_BALL_Z = -25;
 let BALL_TEXTURE = 0;
 let score = 0;
+let three_shot = 0;
 let boundary = {
   x: { min: -35, max: 35 },
   y: { min: -35, max: 35 },

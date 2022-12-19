@@ -38,9 +38,11 @@ export default class Utility {
         break;
       }
     }
-    let position = new_position;
 
-    object.item.solid.position.set(position[0], position[1], position[2]);
+    object.item.solid.position.set(new_position[0], new_position[1], new_position[2]);
+    //entah kenapa gabisa pas
+    object.item.wireframe.position.set(new_position[0], new_position[1]-5, new_position[2]);
+    
 
   }
 

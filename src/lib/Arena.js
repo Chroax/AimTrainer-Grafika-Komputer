@@ -5,9 +5,11 @@ export default class Light {
         this.scene = scene;
         this.utility = new Utility();
         this.sphere_radius = 10;
-        this.size = 200;
+        this.size = (CAMERA_Z + DISTANCE) << 1;
+        this.mid = (CAMERA_Z - DISTANCE) >> 1;
         this.objects = {
             floor: {
+                name : 'floor',
                 texture: './src/assets/images/floor.png',
                 repeat: 10,
                 color: 0xffffff,
@@ -19,9 +21,10 @@ export default class Light {
                 height: this.size,
                 x: 0,
                 y: -50,
-                z: 50
+                z: this.mid
             },
             roof: {
+                name : 'roof',
                 texture: './src/assets/images/roof.png',
                 repeat: 10,
                 color: 0xffffff,
@@ -32,10 +35,11 @@ export default class Light {
                 width: this.size,
                 height: this.size,
                 x: 0,
-                y: 50,
-                z: 50
+                y: 100,
+                z: this.mid
             },
             wall_front: {
+                name : 'wall',
                 texture: './src/assets/images/wall.png',
                 repeat: 10,
                 color: 0xff00ff,
@@ -45,11 +49,12 @@ export default class Light {
                 },
                 x: 0,
                 y: 0,
-                z: -50,
+                z: this.mid - this.size >> 1,
                 width: this.size,
                 height: this.size
             },
             wall_back: {
+                name : 'wall',
                 texture: undefined,
                 repeat: 10,
                 color: 0x000000,
@@ -61,9 +66,10 @@ export default class Light {
                 height: this.size,
                 x: 0,
                 y: 0,
-                z: 50
+                z: this.mid + this.size >> 1
             },
             wall_left: {
+                name : 'wall',
                 texture: './src/assets/images/wall.png',
                 repeat: 10,
                 color: 0xffff00,
@@ -75,9 +81,10 @@ export default class Light {
                 height: this.size,
                 x: -50,
                 y: 50,
-                z: 50
+                z: this.mid
             },
             wall_right: {
+                name : 'wall',
                 texture: './src/assets/images/wall.png',
                 repeat: 10,
                 color: 0xff0000,
@@ -89,7 +96,7 @@ export default class Light {
                 height: this.size,
                 x: 50,
                 y: 50,
-                z: 50
+                z: this.mid
             }
         };
 
@@ -110,14 +117,15 @@ export default class Light {
             obj_texture.wrapT = THREE.RepeatWrapping;
             obj_texture.repeat.set(object.repeat, object.repeat);
 
-            obj_material = new THREE.MeshBasicMaterial({ map: obj_texture });
+            obj_material = new THREE.MeshStandardMaterial({ map: obj_texture });
         }
         else {
-            obj_material = new THREE.MeshBasicMaterial({ color: color });
+            obj_material = new THREE.MeshStandardMaterial({ color: color });
         };
         obj_material.side = THREE.DoubleSide;
         let wall = new THREE.Mesh(obj_geometry, obj_material);
-
+        wall.receiveShadow = true;
+        wall.castShadow = false;
         return wall;
     }
     addWall(object) {

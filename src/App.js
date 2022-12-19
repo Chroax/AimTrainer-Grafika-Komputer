@@ -28,13 +28,13 @@ function animate() {
     const light = new Light(scene);
     light.initialize();
     light.setLight('PointLight', true);
-    light.setLight('HemisphereLight', true);
+    // light.setLight('HemisphereLight', true);
 
     const arena = new Arena(scene);
     arena.initialize();
     const ball = new Ball(scene);
 
-    BALL_TEXTURE = 2;
+    BALL_TEXTURE = 3;
     for (let i = 0; i < MAX_TARGET; i++) {
         ball.addBall(scene);
     }
@@ -46,7 +46,8 @@ function animate() {
     function render() {
         let currentTime = new Date();
         var timeDiff = currentTime - START_TIME;
-
+        // THIS_ACTIVE = true;
+        // three_shot = 0;
         timeDiff /= 1000;
 
         stat.addRawFps();
@@ -93,7 +94,8 @@ let currentRunningProgram = null;
 
 export function startGame() {
     MAX_TIME = document.getElementById("time-form").value;
-
+    THIS_ACTIVE = true;
+    three_shot = 0; //tembakan awal agar poin cuma 100
     document.querySelector("#time-button").addEventListener("click", function () {
         document.querySelector(".popup").style.display = "none";
     });

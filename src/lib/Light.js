@@ -33,7 +33,7 @@ export default class Light {
         this.DirectionalLight(0.5);
         this.HemisphereLight(1);
         this.AmbientLight(1);
-        this.PointLight(0.2);
+        this.PointLight(2);
         this.SpotLight(1);
     }
 
@@ -50,26 +50,26 @@ export default class Light {
     DirectionalFactory(color, intensity, position) {
         const light = new THREE.DirectionalLight(color, intensity);
         light.position.set(position[0], position[1], position[2]);
+        light.castShadow = true;
         return light;
     };
 
     DirectionalLight(intensity) {
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, 25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, 25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, -25]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, 25]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, 25]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, -25]));
         this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, -25]));
 
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, 30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, 30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, -30]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, -30]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, 30]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, 30]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, -30]));
+        // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, -30]));
     }
 
     HemisphereLight(intensity) {
         const skyColor = this.utility.generateRandomColor();
         const groundColor = this.utility.generateRandomColor();
         const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-
         this.objects.HemisphereLight.members.push(light);
     }
 
@@ -82,25 +82,28 @@ export default class Light {
     PointLightFactory(color, intensity, position) {
         const light = new THREE.PointLight(color, intensity);
         light.position.set(position[0], position[1], position[2]);
+        light.castShadow = true;
         return light;
     }
 
     PointLight(intensity) {
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, 25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, 25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, -25]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, 25]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, 25]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, -25]));
         this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, -25]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [0, 0, CAMERA_Z * 1.5]));
 
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, 30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, 30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, -30]));
-        this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, -30]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, 30]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, 30]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, -30]));
+        // this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [30, 0, -30]));
     }
 
     SpotLightFactory(color, intensity, position, target_pos) {
         const light = new THREE.SpotLight(color, intensity);
         light.position.set(position[0], position[1], position[2]);
         light.target.position.set(position[0], position[1], position[2]);
+        light.castShadow = true;
         return light;
     }
 
