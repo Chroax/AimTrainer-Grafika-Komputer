@@ -13,6 +13,14 @@ export default class Utility {
     return parseInt(color, 16);
   }
 
+  defaultPosBall(){
+    CLICKABLE_OBJ.forEach((C_OBJ) => {
+      C_OBJ.item.solid.position.set(0, 0, -DISTANCE);
+      C_OBJ.item.wireframe.position.set(0, 0, -DISTANCE);
+      
+    });
+  }
+
   selectObject(object) {
     let new_position = null;
     let index = 0;
@@ -42,8 +50,6 @@ export default class Utility {
     object.item.solid.position.set(new_position[0], new_position[1], new_position[2]);
     //entah kenapa gabisa pas
     object.item.wireframe.position.set(new_position[0], new_position[1]-3, new_position[2]);
-    
-
   }
 
   resizeRendererToDisplaySize(renderer) {
