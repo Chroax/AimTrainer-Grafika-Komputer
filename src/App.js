@@ -33,7 +33,6 @@ function animate() {
     arena.initialize();
     const ball = new Ball(scene);
 
-    BALL_TEXTURE = 3;
     for (let i = 0; i < MAX_TARGET; i++) {
         ball.addBall(scene);
     }
@@ -76,7 +75,7 @@ function animate() {
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
             camera.updateProjectionMatrix();
         }
-
+        console.log(BALL_TEXTURE);
         renderer.render(scene, camera);
         if (GAME_STATE != "IDLE") {
             requestAnimationFrame(render);

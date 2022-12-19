@@ -357,3 +357,67 @@ input {
   position: absolute;
   top: 0;
 }
+.selector{
+  width: 370px;
+  left: 25%;
+  top: 27%;
+  position: absolute;
+}
+
+#select-field{
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px 6px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.popup-content.target-poping{
+  width: 500px;
+  height: 70px;
+  background-image: linear-gradient(#f44336, #730228);
+}
+
+#select-field img{
+  width: 16px;
+  transition: transform 0.5s;
+}
+
+#list{
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0px 0px 6px 6px;
+  overflow: hidden;
+}
+
+.options{
+  width: 100%;
+  padding: 15px 0 15px 70px;
+  list-style: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.options img{
+  width: 25px;
+  position: absolute;
+  top: 12px;
+  left: 25px;
+}
+
+.options:hover{
+  background: rgba(255, 255, 255,1);
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.rotate{
+  transform: rotate(180deg);
+}

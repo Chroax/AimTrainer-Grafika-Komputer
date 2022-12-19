@@ -13,7 +13,9 @@ let MAX_TARGET = 3;
 let DISTANCE = 100;
 let CAMERA_Z = 50;
 let FIRST_BALL_Z = -25;
-let BALL_TEXTURE = 0;
+let BALL_TEXTURE = localStorage.getItem("texture")
+? localStorage.getItem("texture")
+: 0;
 let score = 0;
 let three_shot = 0;
 let boundary = {
