@@ -6,6 +6,8 @@ let HIGH_SCORE = localStorage.getItem("highscore")
   : 0;
 const AUDIO_CLICK_RIGHT = "/src/assets/roblox_death.mp3";
 const AUDIO_CLICK_WRONG = "/src/assets/bruh.mp3";
+const BALL_IMG_SRC = "/src/assets/images/ball/";
+const BALL_IMG_EXT = ".png";
 let THIS_ACTIVE = true;
 let CLICKABLE_OBJ = [];
 let SPHERE_RADIUS = 6;

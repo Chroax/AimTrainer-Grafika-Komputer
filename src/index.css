@@ -421,3 +421,10 @@ input {
 .rotate{
   transform: rotate(180deg);
 }
+
+.ball{
+  width: 80px;
+  position: absolute;
+  left: 27px;
+  top: 15px;
+}
