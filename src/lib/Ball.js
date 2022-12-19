@@ -35,28 +35,7 @@ export default class Ball{
     }
 
     addBall(scene){
-        let new_position = null;
-        
-        while(true){
-            new_position = [this.utility.getRndInteger(boundary.x.min, boundary.x.max), this.utility.getRndInteger(boundary.y.min, boundary.y.max), -DISTANCE];
-            let isOK = true;
-            for(let i=0; i<CLICKABLE_OBJ.length; i++){
-                if(
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.x - new_position[0]) <= 2.5 * SPHERE_RADIUS
-                    &&
-                    Math.abs(CLICKABLE_OBJ[i].item.solid.position.y - new_position[1]) <= 2.5 * SPHERE_RADIUS
-                ){
-                    isOK = false;
-                    break;
-                }
-            }
-            if(isOK){
-                break;
-            }
-        }
-    
-        let position = new_position;
-        position = [0, 0, FIRST_BALL_Z];
+        let position = [0, 0, FIRST_BALL_Z];
         let obj = this.ballFactory(this.ballTexture.getTexture(BALL_TEXTURE));
         obj.solid.position.set(position[0], position[1], position[2]);
         obj.wireframe.position.set(position[0], position[1], position[2]);
