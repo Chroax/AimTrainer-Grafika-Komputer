@@ -428,3 +428,8 @@ input {
   left: 27px;
   top: 15px;
 }
+
+#crosshair p{
+  color: yellow;
+  font-weight: 800px;
+}
