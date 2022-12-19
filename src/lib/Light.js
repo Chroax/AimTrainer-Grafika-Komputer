@@ -58,7 +58,7 @@ export default class Light {
         // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, 25]));
         // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, 25]));
         // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-25, 50, -25]));
-        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 50, -25]));
+        this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [25, 25, -25]));
 
         // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [-30, 0, 30]));
         // this.objects.DirectionalLight.members.push(this.DirectionalFactory(0xFFFFFF, intensity, [30, 0, 30]));
@@ -90,7 +90,7 @@ export default class Light {
         // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, 25]));
         // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, 25]));
         // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [-25, 50, -25]));
-        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 50, -25]));
+        this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [25, 25, -25]));
         // this.objects.PointLight.members.push(this.PointLightFactory(0xffffff, intensity, [0, 0, CAMERA_Z * 1.5]));
 
         // this.objects.PointLight.members.push(this.PointLightFactory(this.utility.generateRandomColor(), intensity, [-30, 0, 30]));

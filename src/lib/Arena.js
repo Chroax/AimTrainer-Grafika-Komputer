@@ -35,7 +35,7 @@ export default class Light {
                 width: this.size,
                 height: this.size,
                 x: 0,
-                y: 100,
+                y: 50,
                 z: this.mid
             },
             wall_front: {
