@@ -64,14 +64,15 @@ function animate() {
             document.querySelector('#accuracy-container').style.display = 'none';
             document.querySelector('#time-container').style.display = 'none';
             document.querySelector('#canvas').style.display = 'none';
+            document.querySelector('#background').style.display = 'flex';
 
             document.exitPointerLock();
             scene.clear();
             THIS_ACTIVE = false;
 
             // Game Ended, Then Show Score
-            // document.querySelector('#music').currentTime = 0;
-            // document.querySelector('#music').play();
+            document.querySelector('#music').currentTime = 0;
+            document.querySelector('#music').play();
             localStorage.setItem("highscore", HIGH_SCORE);
             document.querySelector('#highscore').innerHTML = localStorage.getItem("highscore");
             return;
